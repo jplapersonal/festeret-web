@@ -15,7 +15,7 @@ export function Footer() {
           <a href="#preguntas" className="hover:text-paper">Preguntas</a>
         </nav>
         <div className="text-sm md:text-right">
-          <p className="font-display italic text-paper/80">Fet a Ontinyent, amb festa.</p>
+          <p className="font-display text-paper/80">Fet a Ontinyent, amb festa.</p>
           <p className="mt-1">© {new Date().getFullYear()} festeret.ai</p>
         </div>
       </div>

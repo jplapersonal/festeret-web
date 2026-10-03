@@ -37,7 +37,7 @@ export function Pricing({ onOpenDemo }: PricingProps) {
     <section id="precios" className="grain relative bg-paper py-28 sm:py-36">
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <div className="max-w-3xl reveal">
-          <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-grana">Precios</p>
+          <p className="eyebrow text-grana">Precios</p>
           <h2 className="font-display mt-5 text-[clamp(2.4rem,5vw,4.4rem)] leading-[1] font-medium text-ink">
             Lo que cuesta una cena.
             <br />

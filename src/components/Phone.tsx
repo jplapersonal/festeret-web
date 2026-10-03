@@ -47,7 +47,7 @@ export function Phone({ messages, typing, footer, className = '', title = 'El Fe
         <div className="bg-wa text-white px-4 py-2.5 flex items-center gap-3 shrink-0">
           <span className="text-white/80 text-lg leading-none">‹</span>
           <div className="relative h-9 w-9 rounded-full bg-grana grid place-items-center ring-2 ring-white/15">
-            <span className="font-display italic font-bold text-paper text-lg leading-none">f</span>
+            <span className="font-display font-bold text-paper text-lg leading-none">f</span>
             <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-oro ring-2 ring-wa" />
           </div>
           <div className="leading-tight">

@@ -19,12 +19,14 @@
   --color-wa: #075e54;
   --color-wa-bubble: #dcf8c6;
 
-  --font-display: "Fraunces", Georgia, serif;
-  --font-sans: "Inter Tight", system-ui, -apple-system, sans-serif;
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-sans: "Geist", system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
 @layer base {
   html {
+    overflow-x: clip;
     scroll-behavior: smooth;
     background: var(--color-ink);
   }
@@ -41,12 +43,24 @@
   }
 }
 
-/* Display serif with optical sizing for big headlines */
+/* Display grotesk: tight, slightly condensed at large sizes */
 .font-display {
   font-family: var(--font-display);
   font-optical-sizing: auto;
-  font-variation-settings: "SOFT" 50, "WONK" 0;
-  letter-spacing: -0.02em;
+  font-variation-settings: "wdth" 92;
+  letter-spacing: -0.035em;
+}
+.font-display em {
+  font-style: normal;
+}
+
+/* Mono kicker labels — the subtle "tech" cue */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 /* Paper grain overlay to kill the "flat SaaS" look */

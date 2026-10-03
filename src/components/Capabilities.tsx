@@ -6,7 +6,7 @@ export function Capabilities() {
     <section className="bg-paper py-28 sm:py-36">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="max-w-3xl reveal">
-          <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-grana">Lo que hace</p>
+          <p className="eyebrow text-grana">Lo que hace</p>
           <h2 className="font-display mt-5 text-[clamp(2.4rem,5vw,4.4rem)] leading-[1] font-medium text-ink">
             Todo lo que hoy pasa por el móvil del secretario.
           </h2>
@@ -18,7 +18,7 @@ export function Capabilities() {
             <img src={dinnerImg} alt="Cena de comparsa con brindis" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.5s] group-hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
             <div className="relative h-full flex flex-col justify-end p-8 sm:p-10">
-              <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-oro">Dinars, sopars y alergias</p>
+              <p className="eyebrow text-oro">Dinars, sopars y alergias</p>
               <h3 className="font-display mt-3 text-3xl sm:text-5xl font-medium leading-[1.02] max-w-xl">
                 “Apúntame con menú celíaco.” <em className="text-oro">Y listo.</em>
               </h3>
@@ -61,7 +61,7 @@ export function Capabilities() {
 
           {/* Avisos */}
           <article className="reveal md:col-span-3 rounded-[2rem] bg-grana text-paper p-8 sm:p-10 flex flex-col justify-between">
-            <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-oro">Avisos</p>
+            <p className="eyebrow text-oro">Avisos</p>
             <div>
               <h3 className="font-display text-3xl sm:text-4xl font-medium leading-tight">La directiva avisa una vez. Llega a todos.</h3>
               <p className="mt-3 text-paper/80 text-base">Y las dudas que provoca el aviso las resuelve él, no tu teléfono.</p>
@@ -70,7 +70,7 @@ export function Capabilities() {
 
           {/* Actas */}
           <article className="reveal md:col-span-3 rounded-[2rem] bg-ink text-paper p-8 sm:p-10 flex flex-col justify-between">
-            <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-oro">Memoria de la comparsa</p>
+            <p className="eyebrow text-oro">Memoria de la comparsa</p>
             <div>
               <h3 className="font-display text-3xl sm:text-4xl font-medium leading-tight">Se lee las actas para que tú no tengas que hacerlo.</h3>
               <div className="mt-5 flex flex-wrap gap-2 text-xs">

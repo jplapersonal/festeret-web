@@ -48,7 +48,7 @@ export function DemoModal({ isOpen, onClose }: DemoModalProps) {
 
         {!sent ? (
           <>
-            <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-grana">Demo gratis</p>
+            <p className="eyebrow text-grana">Demo gratis</p>
             <h3 className="font-display mt-3 text-4xl font-medium leading-tight">Pide tu Festeret</h3>
             <p className="mt-3 text-ink/65">Te montamos uno de prueba con los datos de tu comparsa en menos de 24 horas.</p>
 
@@ -66,7 +66,7 @@ export function DemoModal({ isOpen, onClose }: DemoModalProps) {
           </>
         ) : (
           <div className="py-6 text-center">
-            <p className="font-display text-5xl italic text-grana">¡Visca!</p>
+            <p className="font-display text-5xl text-grana">¡Visca!</p>
             <h3 className="font-display mt-4 text-3xl font-medium">Solicitud enviada</h3>
             <p className="mt-3 text-ink/65">
               Hemos abierto WhatsApp para coordinar la demo de <strong className="text-ink">{comparsa}</strong>.

@@ -69,7 +69,7 @@ export function Hero({ onOpenDemo }: HeroProps) {
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8 pt-28 pb-16 lg:pt-28 grid lg:grid-cols-12 gap-14 items-center min-h-[100svh]">
         <div className="lg:col-span-7 min-w-0">
-          <p className="mb-6 flex items-center gap-3 text-[11px] sm:text-[12px] font-semibold uppercase tracking-[0.18em] sm:tracking-[0.22em] text-oro">
+          <p className="eyebrow mb-6 flex items-center gap-3 text-oro">
             <span className="h-px w-8 sm:w-10 shrink-0 bg-oro" />
             Asistente IA para comparsas, filàs y fallas
           </p>
@@ -121,7 +121,7 @@ export function Hero({ onOpenDemo }: HeroProps) {
         <div className="lg:col-span-5 flex justify-center lg:justify-end">
           <div className="relative">
             <div className="absolute -inset-10 rounded-full bg-grana/30 blur-3xl" />
-            <Phone messages={msgs} typing={typing} className="relative rotate-[2deg]" />
+            <Phone messages={msgs} typing={typing} className="relative" />
           </div>
         </div>
       </div>

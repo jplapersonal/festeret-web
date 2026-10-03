@@ -30,7 +30,7 @@ export function HowItWorks() {
               loading="lazy"
               className="w-full aspect-[3/4] object-cover rounded-[2rem]"
             />
-            <div className="absolute -bottom-7 -right-4 sm:-right-8 max-w-[260px] rounded-2xl bg-paper text-ink p-4 shadow-2xl rotate-[2deg]">
+            <div className="absolute -bottom-7 -right-4 sm:-right-8 max-w-[260px] rounded-2xl bg-paper text-ink p-4 shadow-2xl">
               <p className="text-[11px] font-semibold uppercase tracking-widest text-grana">En plena Entrà</p>
               <p className="mt-1 text-[15px] leading-snug">“¿Dónde nos toca parar para el relevo?” — contestado en 2 segundos.</p>
             </div>
@@ -38,7 +38,7 @@ export function HowItWorks() {
         </div>
 
         <div className="lg:col-span-7">
-          <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-oro reveal">Cómo funciona</p>
+          <p className="eyebrow text-oro reveal">Cómo funciona</p>
           <h2 className="font-display mt-5 text-[clamp(2.4rem,5vw,4.4rem)] leading-[1] font-medium reveal">
             Se pone en marcha en un día.
             <br />

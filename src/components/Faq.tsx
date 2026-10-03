@@ -26,7 +26,7 @@ export function Faq() {
     <section id="preguntas" className="bg-paper-2 py-28 sm:py-36">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-12 gap-14">
         <div className="lg:col-span-4 reveal">
-          <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-grana">Preguntas</p>
+          <p className="eyebrow text-grana">Preguntas</p>
           <h2 className="font-display mt-5 text-[clamp(2.4rem,4.5vw,3.8rem)] leading-[1] font-medium text-ink">
             Lo que siempre nos preguntan.
           </h2>

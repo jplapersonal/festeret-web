@@ -64,7 +64,7 @@ export function Simulator() {
     <section id="pruebalo" className="grain relative bg-paper-2 py-28 sm:py-36 overflow-hidden">
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-12 gap-16 items-center">
         <div className="lg:col-span-6 reveal">
-          <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-grana">Pruébalo</p>
+          <p className="eyebrow text-grana">Pruébalo</p>
           <h2 className="font-display mt-5 text-[clamp(2.4rem,5vw,4.4rem)] leading-[1] font-medium text-ink">
             Pregúntale como
             <br />
@@ -99,7 +99,7 @@ export function Simulator() {
           <Phone
             messages={msgs}
             typing={typing}
-            className="-rotate-[1.5deg]"
+           
             footer={
               <form
                 onSubmit={(e) => {

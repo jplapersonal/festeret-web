@@ -2,7 +2,7 @@ export function Manifesto() {
   return (
     <section className="bg-ink text-paper py-28 sm:py-40">
       <div className="mx-auto max-w-5xl px-5 sm:px-8 text-center">
-        <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-oro reveal">Por qué no otra app</p>
+        <p className="eyebrow text-oro reveal">Por qué no otra app</p>
         <h2 className="font-display mt-6 text-[clamp(2.6rem,6.5vw,5.8rem)] leading-[0.98] font-medium reveal">
           Nadie se va a descargar
           <br />
@@ -13,7 +13,7 @@ export function Manifesto() {
           <li className="reveal line-through decoration-grana decoration-[3px]">Buscarla en la App Store</li>
           <li className="reveal line-through decoration-grana decoration-[3px]">Crear usuario y contraseña</li>
           <li className="reveal line-through decoration-grana decoration-[3px]">Aprender otro menú</li>
-          <li className="reveal italic text-oro">Abrir WhatsApp.</li>
+          <li className="reveal text-oro">Abrir WhatsApp.</li>
         </ul>
 
         <p className="mt-14 mx-auto max-w-2xl text-lg text-paper/65 reveal">

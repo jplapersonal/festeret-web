@@ -6,8 +6,8 @@ interface NavbarProps {
 
 export function Logo({ light = false }: { light?: boolean }) {
   return (
-    <span className={`font-display text-[1.65rem] font-semibold italic tracking-tight ${light ? 'text-paper' : 'text-ink'}`}>
-      festeret<span className="text-oro">.ai</span>
+    <span className={`font-display text-[1.6rem] font-bold tracking-[-0.04em] ${light ? 'text-paper' : 'text-ink'}`}>
+      festeret<span className="font-mono text-[1.1rem] font-medium tracking-[-0.06em] -ml-[0.18em] text-oro">.ai</span>
     </span>
   );
 }
