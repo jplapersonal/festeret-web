@@ -2,34 +2,13 @@ interface PricingProps {
   onOpenDemo: () => void;
 }
 
-const PLANS = [
-  {
-    name: 'Escuadra',
-    price: '99 €',
-    per: 'al año',
-    desc: 'Para una escuadra, una filà pequeña o una comisión.',
-    items: ['Hasta 25 festeros', 'WhatsApp o Telegram', 'Comidas, cenas y alergias', 'Hasta 5 documentos'],
-    featured: false,
-    cta: 'La quiero para mi escuadra',
-  },
-  {
-    name: 'Comparsa',
-    price: '390 €',
-    per: 'al año',
-    desc: 'Para toda la comparsa, filà o falla. Sin límite de festeros.',
-    items: ['Festeros ilimitados', 'Vuestro nombre, escudo e idioma', 'Todas vuestras actas y documentos', 'Cuotas y avisos a todos', 'En marcha en 24 horas'],
-    featured: true,
-    cta: 'Pide tu Festeret',
-  },
-  {
-    name: 'Junta / Federación',
-    price: 'Hablemos',
-    per: '',
-    desc: 'Para Juntas Festeras, Societats de Festers o federaciones.',
-    items: ['Varias comparsas a la vez', 'Programa oficial y actos públicos', 'Soporte prioritario'],
-    featured: false,
-    cta: 'Contactar',
-  },
+const INCLUDED = [
+  'Consultas ilimitadas por WhatsApp o Telegram',
+  'Vuestro nombre, escudo e idioma (castellano o valencià)',
+  'Todas vuestras actas y documentos',
+  'Comidas, cenas, alergias y cuotas',
+  'Avisos a todos por Canal de WhatsApp',
+  'Puesta en marcha en 24 h, sin cuota de alta',
 ];
 
 export function Pricing({ onOpenDemo }: PricingProps) {
@@ -37,52 +16,87 @@ export function Pricing({ onOpenDemo }: PricingProps) {
     <section id="precios" className="grain relative bg-paper py-28 sm:py-36">
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <div className="max-w-3xl reveal">
-          <p className="eyebrow text-grana">Precios</p>
+          <p className="eyebrow text-grana">Precio</p>
           <h2 className="font-display mt-5 text-[clamp(2.4rem,5vw,4.4rem)] leading-[1] font-medium text-ink">
-            Lo que cuesta una cena.
+            Pagas por grupos.
             <br />
-            <em className="text-grana">Para todo el año.</em>
+            <em className="text-grana">No por personas.</em>
           </h2>
-          <p className="mt-6 text-lg text-ink/70">Tarifa plana. Sin coste por mensaje, sin permanencia. Demo gratis con vuestros datos.</p>
+          <p className="mt-6 text-lg text-ink/70">
+            Da igual que seáis 12 o 400. Cada grupo tiene su propio Festeret, y lo que publica la comparsa lo saben al momento todas sus escuadras.
+          </p>
         </div>
 
-        <div className="mt-16 grid md:grid-cols-3 gap-5 items-stretch">
-          {PLANS.map((p) => (
-            <div
-              key={p.name}
-              className={`reveal relative rounded-[2rem] p-8 sm:p-10 flex flex-col ${
-                p.featured ? 'bg-ink text-paper shadow-[0_40px_80px_-30px_rgba(22,17,13,0.6)] md:-translate-y-4' : 'bg-white ring-1 ring-ink/10 text-ink'
-              }`}
+        <div className="mt-16 grid lg:grid-cols-3 gap-5 items-stretch">
+          {/* Grupo */}
+          <div className="reveal rounded-[2rem] bg-white ring-1 ring-ink/10 p-8 sm:p-10 flex flex-col">
+            <p className="eyebrow text-grana">Escuadra · Peña · Colla</p>
+            <p className="mt-6 font-display text-[clamp(3.5rem,7vw,5rem)] font-medium leading-none text-ink">69 €</p>
+            <p className="mt-2 text-ink/60">al año</p>
+            <p className="mt-6 text-ink/70 text-[16px] leading-relaxed flex-1">
+              Vuestro grupo, por su cuenta: cuotas, turnos, cenas y documentos de la escuadra, en vuestro WhatsApp.
+            </p>
+            <button
+              onClick={onOpenDemo}
+              className="mt-8 rounded-full border border-ink/20 py-4 font-semibold text-ink hover:bg-ink hover:text-paper transition-colors cursor-pointer"
             >
-              {p.featured && (
-                <span className="absolute -top-3.5 left-8 rounded-full bg-oro px-4 py-1 text-xs font-bold uppercase tracking-wider text-ink">
-                  La más elegida
-                </span>
-              )}
-              <h3 className="text-lg font-semibold">{p.name}</h3>
-              <p className={`mt-2 text-[15px] ${p.featured ? 'text-paper/65' : 'text-ink/60'}`}>{p.desc}</p>
-              <p className="mt-8 flex items-baseline gap-2">
-                <span className="font-display text-6xl font-medium">{p.price}</span>
-                {p.per && <span className={p.featured ? 'text-paper/60' : 'text-ink/50'}>{p.per}</span>}
+              Empezar con mi escuadra
+            </button>
+          </div>
+
+          {/* Entidad */}
+          <div className="reveal rounded-[2rem] bg-ink text-paper p-8 sm:p-10 flex flex-col shadow-[0_40px_80px_-30px_rgba(22,17,13,0.6)] lg:-my-4">
+            <p className="eyebrow text-oro">Comparsa · Filà · Falla · Cofradía</p>
+            <p className="mt-6 font-display text-[clamp(3.5rem,7vw,5rem)] font-medium leading-none">190 €</p>
+            <p className="mt-2 text-paper/70">al año, para todos sus miembros</p>
+            <div className="mt-6 rounded-2xl bg-paper/[0.06] ring-1 ring-paper/15 p-5">
+              <p className="text-[16px]">
+                <span className="font-display text-3xl text-oro">+25 €</span>
+                <span className="text-paper/80"> por cada escuadra o peña que se sume</span>
               </p>
-              <ul className={`mt-8 space-y-3 text-[15px] flex-1 border-t pt-8 ${p.featured ? 'border-paper/15' : 'border-ink/10'}`}>
-                {p.items.map((i) => (
-                  <li key={i} className="flex gap-3">
-                    <span className={p.featured ? 'text-oro' : 'text-grana'}>✦</span>
-                    {i}
-                  </li>
-                ))}
-              </ul>
-              <button
-                onClick={onOpenDemo}
-                className={`mt-10 rounded-full py-4 font-semibold transition-colors cursor-pointer ${
-                  p.featured ? 'bg-grana hover:bg-grana-2 text-paper' : 'border border-ink/20 hover:bg-ink hover:text-paper'
-                }`}
-              >
-                {p.cta}
-              </button>
+              <p className="mt-2 text-sm text-paper/55">En vez de 69 € cada una. Una sola factura.</p>
             </div>
-          ))}
+            <p className="mt-6 text-paper/70 text-[16px] leading-relaxed flex-1">
+              Normas, actos, actas y avisos para toda la comparsa, y un Festeret propio para cada escuadra que ya sabe todo lo de arriba.
+            </p>
+            <button
+              onClick={onOpenDemo}
+              className="mt-8 rounded-full bg-grana hover:bg-grana-2 py-4 font-semibold text-paper transition-colors cursor-pointer"
+            >
+              Pide tu Festeret
+            </button>
+            <p className="mt-3 text-center text-sm text-paper/50">Demo gratis con vuestros datos</p>
+          </div>
+
+          {/* Federación */}
+          <div className="reveal rounded-[2rem] bg-white ring-1 ring-ink/10 p-8 sm:p-10 flex flex-col">
+            <p className="eyebrow text-grana">Juntas · Societats · Federaciones</p>
+            <h3 className="font-display mt-6 text-4xl font-medium text-ink leading-tight">Toda la fiesta, en un solo Festeret.</h3>
+            <p className="mt-4 text-ink/65 text-[16px] leading-relaxed flex-1">
+              Programa oficial y actos públicos para toda la ciudad, y cada comparsa con su Festeret a precio de Junta.
+            </p>
+            <button
+              onClick={onOpenDemo}
+              className="mt-8 rounded-full border border-ink/20 py-4 font-semibold text-ink hover:bg-ink hover:text-paper transition-colors cursor-pointer"
+            >
+              Hablemos
+            </button>
+          </div>
+        </div>
+
+        <div className="reveal mt-12 rounded-[2rem] ring-1 ring-ink/10 bg-paper-2/60 p-8 sm:p-10">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <p className="eyebrow text-ink/60">Todo incluido en cualquier plan</p>
+            <p className="text-sm text-ink/50">IVA no incluido · ¿Ya pagabais como escuadra? Os lo descontamos al entrar la comparsa.</p>
+          </div>
+          <ul className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4 text-[16px]">
+            {INCLUDED.map((i) => (
+              <li key={i} className="flex gap-3">
+                <span className="text-grana">✦</span>
+                <span className="text-ink/85">{i}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

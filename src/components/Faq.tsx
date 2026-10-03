@@ -16,6 +16,14 @@ const FAQS = [
     a: 'Sí. En castellano, en valencià o en los dos, y con el tono que queráis. Le podéis poner el nombre que queráis: “El Festeret de Taifas”, “El Maseret”, “El Falleret”…',
   },
   {
+    q: '¿Por qué se paga por escuadra y no por festero?',
+    a: 'Porque cada escuadra o peña tiene su propio Festeret, con sus cuotas, sus turnos y sus cenas, y no tiene sentido que pague más una comparsa grande que una pequeña. Si la comparsa contrata por todas, cada escuadra sale a 25 € al año en vez de 69 €, y si alguna ya pagaba por su cuenta, se le descuenta.',
+  },
+  {
+    q: '¿Hay costes extra?',
+    a: 'No en el uso normal: las consultas son ilimitadas y los avisos a todos se envían por un Canal de WhatsApp de la comparsa, que es gratuito. Solo si queréis mandar avisos personalizados uno a uno por WhatsApp, Meta cobra por esos mensajes; en ese caso os avisamos antes y se factura aparte, a coste.',
+  },
+  {
     q: '¿Cuánto se tarda en tenerlo?',
     a: 'Menos de 24 horas desde que nos pasáis la documentación. Primero lo prueba la directiva y, cuando os guste, se lo pasáis a toda la comparsa.',
   },

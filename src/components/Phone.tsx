@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Owl } from './Owl';
 
 export type ChatMsg = { id: string; from: 'user' | 'bot'; text: string; time: string };
 
@@ -46,10 +47,7 @@ export function Phone({ messages, typing, footer, className = '', title = 'El Fe
         {/* header */}
         <div className="bg-wa text-white px-4 py-2.5 flex items-center gap-3 shrink-0">
           <span className="text-white/80 text-lg leading-none">‹</span>
-          <div className="relative h-9 w-9 rounded-full bg-grana grid place-items-center ring-2 ring-white/15">
-            <span className="font-display font-bold text-paper text-lg leading-none">f</span>
-            <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-oro ring-2 ring-wa" />
-          </div>
+          <Owl size={36} className="shrink-0 ring-2 ring-white/15 rounded-full" />
           <div className="leading-tight">
             <p className="text-[14px] font-semibold">{title}</p>
             <p className="text-[11px] text-white/75">{typing ? 'escribiendo…' : 'en línea'}</p>
