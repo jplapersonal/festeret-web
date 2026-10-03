@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { X, Sparkles, Send, CheckCircle2 } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 import confetti from 'canvas-confetti';
 
 interface DemoModalProps {
@@ -7,153 +6,77 @@ interface DemoModalProps {
   onClose: () => void;
 }
 
-export const DemoModal: React.FC<DemoModalProps> = ({ isOpen, onClose }) => {
-  const [comparsaName, setComparsaName] = useState('');
+const field =
+  'w-full rounded-xl border border-ink/15 bg-white px-4 py-3.5 text-[15px] text-ink placeholder:text-ink/35 outline-none focus:border-grana focus:ring-2 focus:ring-grana/15';
+
+export function DemoModal({ isOpen, onClose }: DemoModalProps) {
+  const ref = useRef<HTMLDialogElement>(null);
+  const [comparsa, setComparsa] = useState('');
   const [town, setTown] = useState('');
-  const [contactName, setContactName] = useState('');
+  const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+  const [sent, setSent] = useState(false);
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    const d = ref.current;
+    if (!d) return;
+    if (isOpen && !d.open) d.showModal();
+    if (!isOpen && d.open) d.close();
+  }, [isOpen]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!comparsaName || !phone) return;
-
-    // Send WhatsApp notification / lead
-    const whatsappMsg = encodeURIComponent(
-      `👋 ¡Hola! Me gustaría solicitar una prueba/demo gratuita de festeret.ai para nuestra comparsa:\n\n• Comparsa/Filà: ${comparsaName}\n• Localidad: ${town || 'No especificada'}\n• Contacto: ${contactName || 'Responsable'}\n• Teléfono: ${phone}`
+    const msg = encodeURIComponent(
+      `Hola! Quiero una demo de festeret.ai\n\n• Comparsa/Filà/Falla: ${comparsa}\n• Fiesta / municipio: ${town}\n• Contacto: ${name || '-'}\n• Teléfono: ${phone}`,
     );
-
-    window.open(`https://wa.me/34659682643?text=${whatsappMsg}`, '_blank');
-    setSubmitted(true);
-
-    try {
-      confetti({
-        particleCount: 70,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#2dd4bf', '#fbbf24', '#38bdf8']
-      });
-    } catch {}
+    window.open(`https://wa.me/34659682643?text=${msg}`, '_blank');
+    setSent(true);
+    confetti({ particleCount: 90, spread: 75, origin: { y: 0.6 }, colors: ['#a3172b', '#d4a23a', '#f3ebdd'] });
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in">
-      <div className="bg-[#090e1c] border border-teal-500/30 rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl relative overflow-hidden text-slate-200">
-        
-        {/* Ambient Glow */}
-        <div className="absolute top-0 right-0 w-48 h-48 bg-teal-500/15 rounded-full blur-3xl pointer-events-none" />
-
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-full bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-colors cursor-pointer"
-        >
-          <X className="w-5 h-5" />
+    <dialog
+      ref={ref}
+      onClose={onClose}
+      onClick={(e) => e.target === ref.current && onClose()}
+      className="m-auto w-[min(560px,calc(100%-2rem))] rounded-[2rem] bg-paper p-0 text-ink backdrop:bg-ink/75 backdrop:backdrop-blur-sm"
+    >
+      <div className="relative p-8 sm:p-10">
+        <button onClick={onClose} aria-label="Cerrar" className="absolute right-5 top-5 h-10 w-10 rounded-full hover:bg-ink/5 text-2xl leading-none cursor-pointer">
+          ×
         </button>
 
-        {!submitted ? (
-          <div className="space-y-6">
-            <div className="space-y-2">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-500/10 text-teal-300 text-[10px] font-bold uppercase tracking-wider border border-teal-500/20">
-                <Sparkles className="w-3 h-3 text-amber-300" />
-                <span>Prueba Gratuita sin Compromiso</span>
+        {!sent ? (
+          <>
+            <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-grana">Demo gratis</p>
+            <h3 className="font-display mt-3 text-4xl font-medium leading-tight">Pide tu Festeret</h3>
+            <p className="mt-3 text-ink/65">Te montamos uno de prueba con los datos de tu comparsa en menos de 24 horas.</p>
+
+            <form onSubmit={submit} className="mt-8 space-y-4">
+              <input required className={field} placeholder="Comparsa, filà o falla *" value={comparsa} onChange={(e) => setComparsa(e.target.value)} />
+              <div className="grid sm:grid-cols-2 gap-4">
+                <input required className={field} placeholder="Municipio / fiesta *" value={town} onChange={(e) => setTown(e.target.value)} />
+                <input className={field} placeholder="Tu nombre y cargo" value={name} onChange={(e) => setName(e.target.value)} />
               </div>
-              <h3 className="text-2xl font-black text-white tracking-tight font-sans">
-                Pide tu Demo Personalizada
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-300">
-                Déjanos los datos de tu comparsa y te montamos un bot de prueba en menos de 24 horas para que lo pruebe tu directiva.
-              </p>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-4 text-xs">
-              <div>
-                <label className="block text-slate-300 font-bold uppercase tracking-wider mb-1">
-                  Nombre de tu Comparsa / Filà / Peña *
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={comparsaName}
-                  onChange={(e) => setComparsaName(e.target.value)}
-                  placeholder="Ej: Comparsa Taifas, Filà Maseros, Falla Plaza..."
-                  className="w-full px-4 py-3 rounded-xl bg-[#050811] border border-white/10 text-white placeholder:text-slate-500 outline-none focus:border-teal-400 transition-colors"
-                />
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-slate-300 font-bold uppercase tracking-wider mb-1">
-                    Municipio / Fiesta *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={town}
-                    onChange={(e) => setTown(e.target.value)}
-                    placeholder="Ej: Ontinyent, Alcoy, Elda, Valencia..."
-                    className="w-full px-4 py-3 rounded-xl bg-[#050811] border border-white/10 text-white placeholder:text-slate-500 outline-none focus:border-teal-400 transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-slate-300 font-bold uppercase tracking-wider mb-1">
-                    Tu Nombre / Cargo
-                  </label>
-                  <input
-                    type="text"
-                    value={contactName}
-                    onChange={(e) => setContactName(e.target.value)}
-                    placeholder="Ej: Jose (Presidente / Tesorero)"
-                    className="w-full px-4 py-3 rounded-xl bg-[#050811] border border-white/10 text-white placeholder:text-slate-500 outline-none focus:border-teal-400 transition-colors"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-slate-300 font-bold uppercase tracking-wider mb-1">
-                  Teléfono Móvil (WhatsApp) *
-                </label>
-                <input
-                  type="tel"
-                  required
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="Ej: 659 000 000"
-                  className="w-full px-4 py-3 rounded-xl bg-[#050811] border border-white/10 text-white placeholder:text-slate-500 outline-none focus:border-teal-400 transition-colors"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-4 rounded-xl bg-gradient-to-r from-teal-300 via-emerald-400 to-amber-300 hover:from-teal-200 hover:to-amber-200 text-slate-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-teal-500/25 transition-transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer mt-2"
-              >
-                <Send className="w-4 h-4 text-slate-950" />
-                <span>Solicitar Demo por WhatsApp</span>
+              <input required type="tel" autoComplete="tel" className={field} placeholder="Móvil (WhatsApp) *" value={phone} onChange={(e) => setPhone(e.target.value)} />
+              <button type="submit" className="w-full rounded-full bg-grana hover:bg-grana-2 py-4 font-semibold text-paper transition-colors cursor-pointer">
+                Enviar por WhatsApp
               </button>
             </form>
-          </div>
+          </>
         ) : (
-          <div className="text-center py-8 space-y-4">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center mx-auto">
-              <CheckCircle2 className="w-8 h-8" />
-            </div>
-            <h3 className="text-2xl font-black text-white font-sans">¡Solicitud Enviada!</h3>
-            <p className="text-sm text-slate-300 max-w-sm mx-auto">
-              Hemos abierto WhatsApp para coordinar la demo de <strong className="text-white">{comparsaName}</strong>. En breve tendrás tu bot listo para probar.
+          <div className="py-6 text-center">
+            <p className="font-display text-5xl italic text-grana">¡Visca!</p>
+            <h3 className="font-display mt-4 text-3xl font-medium">Solicitud enviada</h3>
+            <p className="mt-3 text-ink/65">
+              Hemos abierto WhatsApp para coordinar la demo de <strong className="text-ink">{comparsa}</strong>.
             </p>
-            <button
-              onClick={onClose}
-              className="px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs cursor-pointer"
-            >
+            <button onClick={onClose} className="mt-8 rounded-full border border-ink/20 px-8 py-3 font-semibold hover:bg-ink hover:text-paper cursor-pointer">
               Cerrar
             </button>
           </div>
         )}
-
       </div>
-    </div>
+    </dialog>
   );
-};
+}
