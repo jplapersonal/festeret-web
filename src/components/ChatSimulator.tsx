@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Bot, Send, Sparkles, ShieldCheck, CheckCheck } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Send, Sparkles, CheckCheck, RefreshCw, Heart } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface Message {
@@ -7,316 +7,319 @@ interface Message {
   sender: 'user' | 'bot';
   text: string;
   time: string;
-  actionTag?: string;
+  badge?: string;
+  isAudio?: boolean;
 }
 
-const INITIAL_MESSAGES: Message[] = [
+const PRESET_PROMPTS = [
   {
-    id: 'm1',
-    sender: 'bot',
-    text: '¡Hombre Jose! 👋🎉 Soy **El Festeret** de tu comparsa 🐪. Pregúntame de cenas, qué traje toca ponerse, horarios o tus recibos de cuotas.',
-    time: '12:00'
+    icon: '🎺',
+    label: 'Horario y formación',
+    query: '¿A qué hora salimos en la Diana y dónde formamos?',
+    response: '¡Hombre Jose! 👋 La Diana de Gala arranca a las **07:30h** desde la Plaza Mayor. Nuestra comparsa forma en el **4º bloque (delante de la Banda de Música)**. ¡Recuerda llevar la chilaba oficial y estar 15 min antes para pasar lista! 🥁',
+    badge: 'Horario Oficial'
   },
   {
-    id: 'm2',
-    sender: 'user',
-    text: '¿A qué hora salimos en la Diana y qué traje me pongo?',
-    time: '12:01'
+    icon: '🧵',
+    label: 'Tela de chilaba de diario',
+    query: '¿Dónde y cómo pido la tela azul turquesa para la chilaba de diario?',
+    response: 'Según el acta de asamblea de mayo: la tela oficial es **Satén Turquesa Festero (Ref. TF-502)**. Se encarga directamente en Tejidos La Purísima diciendo que eres de nuestra comparsa (tienes un 15% de descuento aplicado). ¡Pregunta por Vicente!',
+    badge: 'Indumentaria Oficial'
   },
   {
-    id: 'm3',
-    sender: 'bot',
-    text: '🌟 ¡Diana del Domingo a las 07:30h desde la Plaça Major!\n\n👉 Toca **Traje de Gala oficial completo**. Recuerda que para la Diana de chilaba es el sábado por la mañana. ¡A dormir pronto que pasamos lista! 😉🐪',
-    time: '12:01'
-  }
-];
-
-const PRESET_QUESTIONS = [
-  {
-    label: '👘 ¿Qué traje toca el viernes?',
-    query: '¿Puedo llevar la chilaba el viernes por la mañana?',
-    response: '⚠️ ¡Ojo al dato! El viernes por la mañana en la Entrada Infantil SOLO puedes llevar chilaba si sales tocando el pandero con la banda. Si no tocas, está prohibido por reglamento. ¡Por la noche en la Gran Entrada toca Traje de Gala a tope! 👘✨'
+    icon: '🥘',
+    label: 'Cena de Gala & Celíaco',
+    query: 'Apúntame a la cena de gala del sábado, pero soy celíaco',
+    response: '¡Anotado Jose! 🎉 Quedas registrado en la mesa de tu escuadra con menú **100% Sin Gluten (Alergia celiaquía confirmada)** para el catering. Recibirás el recordatorio el viernes.',
+    badge: 'Reserva Confirmada'
   },
   {
-    label: '🍽️ Apuntarme a la cena con celíaco',
-    query: 'Apúntame a la cena del Mig Any con mi mujer y mi hijo celíaco (sin gluten)',
-    response: '¡Hecho Jose! 🎉 Anotados los 3 para la Cena del Mig Any (2 adultos + 1 menor celíaco menú sin gluten). Ya se lo he pasado a intendencia para la reserva. ¡A liarla! 🐪✅',
-    actionTag: 'RESERVA_CONFIRMADA'
-  },
-  {
-    label: '💳 Consultar mi estado de cuotas',
-    query: '¿Cuánto llevo pagado de cuota este año y cuál es el siguiente recibo?',
-    response: '💰 Llevas validadas 1 de 10 remesas (60 € de 550 €). La 2ª remesa la gira la comparsa desde el Sabadell el ~11 de Octubre. Si ya te pasaron el cargo, dímelo y te pongo el check verde al momento. 💳✅'
-  },
-  {
-    label: '📜 ¿Dónde pido la tela de la chilaba?',
-    query: '¿Dónde puedo comprar la tela oficial de la chilaba?',
-    response: '👘 La tela oficial de satén turquesa no se compra en tiendas. Pídesela a La Junta para que te pasen con la modista oficial asignada, y el importe se te carga en la remesa de julio (Acta 3/2025). ¡Prohibido telas externas por tonos de brillo! 🐪📜'
+    icon: '💳',
+    label: 'Estado de mi cuota',
+    query: '¿Tengo al día la cuota de la escuadra?',
+    response: '✅ Todo en orden, Jose. Tienes la cuota anual 2026/2027 domiciliada y el recibo de septiembre ya está regularizado. ¡A disfrutar!',
+    badge: 'Tesorería al día'
   }
 ];
 
 export const ChatSimulator: React.FC = () => {
-  const [messages, setMessages] = useState<Message[]>(INITIAL_MESSAGES);
-  const [inputText, setInputText] = useState('');
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      id: '1',
+      sender: 'bot',
+      text: '¡Hola festero! 👋 Soy **El Festeret**, el copiloto oficial de tu comparsa. ¿Qué necesitas consultar hoy? (Horarios de diana, cenas, telas, cuotas o normas de desfile)',
+      time: '12:00',
+      badge: 'El Festeret IA'
+    }
+  ]);
+  const [inputVal, setInputVal] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [activeChannel, setActiveChannel] = useState<'telegram' | 'whatsapp'>('telegram');
-  const chatBottomRef = useRef<HTMLDivElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   useEffect(() => {
-    chatBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    scrollToBottom();
   }, [messages, isTyping]);
 
   const handleSend = (textToSend?: string) => {
-    const text = (textToSend || inputText).trim();
-    if (!text) return;
+    const text = textToSend || inputVal;
+    if (!text.trim()) return;
 
-    const userTime = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
     const userMsg: Message = {
-      id: `u_${Date.now()}`,
+      id: Date.now().toString(),
       sender: 'user',
-      text,
-      time: userTime
+      text: text,
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     };
 
-    setMessages((prev) => [...prev, userMsg]);
-    setInputText('');
+    setMessages(prev => [...prev, userMsg]);
+    if (!textToSend) setInputVal('');
     setIsTyping(true);
 
-    // Dynamic response logic
-    setTimeout(() => {
-      const qLower = text.toLowerCase();
-      let botResponse = '';
-      let hasConfetti = false;
+    // Find if it matches a preset or generate contextual response
+    const matchedPreset = PRESET_PROMPTS.find(p => p.query.toLowerCase() === text.toLowerCase());
 
-      const preset = PRESET_QUESTIONS.find((p) => p.query.toLowerCase() === qLower);
-      if (preset) {
-        botResponse = preset.response;
-        if (preset.actionTag === 'RESERVA_CONFIRMADA') hasConfetti = true;
-      } else if (qLower.includes('cena') || qLower.includes('comida') || qLower.includes('apúntame') || qLower.includes('apuntame')) {
-        botResponse = `¡Anotadísimo! Te dejo confirmado para el próximo acto gastronómico en la sede con menú registrado. ¡A disfrutar de la fiesta! 🍽️🐪`;
-        hasConfetti = true;
-      } else if (qLower.includes('cuota') || qLower.includes('remesa') || qLower.includes('pagar') || qLower.includes('banco')) {
-        botResponse = `Tu cuota anual está domiciliada en 10 remesas periódicas. Tienes tu portal al día y puedes consultar el desglose exacto siempre que quieras. 💰✅`;
-      } else if (qLower.includes('traje') || qLower.includes('chilaba') || qLower.includes('gala')) {
-        botResponse = `👘 Recuerda el kit oficial: chilaba de satén turquesa oficial, fez azul, calcetines ejecutivos altos blancos y zapato oficial de piel. ¡Sin excepciones de indumentaria!`;
-      } else if (qLower.includes('hola') || qLower.includes('buenas') || qLower.includes('qué tal')) {
-        botResponse = `¡Ey qué pasa! 👋 Aquí El Festeret listo para resolverte cualquier duda de horarios, cenas, trajes o secretaría de la comparsa. ¿Qué necesitas hoy? 🐪`;
+    setTimeout(() => {
+      let botReply = '';
+      let badge = 'Oficial';
+
+      if (matchedPreset) {
+        botReply = matchedPreset.response;
+        badge = matchedPreset.badge;
       } else {
-        botResponse = `¡Oído! Como Copiloto IA de tu comparsa conozco al milímetro tus actas, estatutos, censo y fechas oficiales. Pregúntame sobre cualquier acto o cuota y te lo digo al instante. 🐪✨`;
+        botReply = `¡Entendido! Consultando en el histórico de actas y normativas de la comparsa: para "${text}", todo está registrado y validado. Te mantendremos informado por este mismo chat. 🎉`;
       }
 
-      const botTime = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
       const botMsg: Message = {
-        id: `b_${Date.now()}`,
+        id: (Date.now() + 1).toString(),
         sender: 'bot',
-        text: botResponse,
-        time: botTime
+        text: botReply,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        badge: badge
       };
 
-      setMessages((prev) => [...prev, botMsg]);
+      setMessages(prev => [...prev, botMsg]);
       setIsTyping(false);
 
-      if (hasConfetti) {
-        try {
-          confetti({
-            particleCount: 50,
-            spread: 60,
-            origin: { y: 0.7 }
-          });
-        } catch {}
+      // Trigger celebratory confetti for interactive delight
+      try {
+        confetti({
+          particleCount: 35,
+          spread: 55,
+          origin: { y: 0.75 },
+          colors: ['#2dd4bf', '#fbbf24', '#38bdf8']
+        });
+      } catch {
+        // ignore in SSR or headless
       }
-    }, 900);
+    }, 1100);
+  };
+
+  const handleReset = () => {
+    setMessages([
+      {
+        id: '1',
+        sender: 'bot',
+        text: '¡Hola festero! 👋 Soy **El Festeret**, el copiloto oficial de tu comparsa. ¿Qué necesitas consultar hoy? (Horarios de diana, cenas, telas, cuotas o normas de desfile)',
+        time: '12:00',
+        badge: 'El Festeret IA'
+      }
+    ]);
   };
 
   return (
-    <section id="simulador" className="py-20 md:py-28 bg-[#090d16] relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-amber-500/5 rounded-full blur-[160px] pointer-events-none" />
+    <section id="demo" className="py-24 relative bg-[#050811] overflow-hidden">
+      {/* Glow effects */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-teal-500/10 blur-[150px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-400/10 border border-amber-400/20 text-amber-300 text-xs font-black uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span>Simulador Interactivo en Vivo</span>
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/25 text-teal-300 text-xs font-bold uppercase tracking-wider mb-4">
+            <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+            Simulador Interactivo en Vivo
           </div>
-          <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
-            Pruébalo tú mismo. <br />
-            <span className="text-amber-400">Así de fácil habla con tus festeros.</span>
+          <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight mb-4 font-sans">
+            Pruébalo tú mismo en{' '}
+            <span className="bg-gradient-to-r from-teal-300 via-emerald-400 to-amber-300 bg-clip-text text-transparent">
+              WhatsApp
+            </span>
           </h2>
-          <p className="text-slate-400 text-base sm:text-lg">
-            Haz clic en cualquiera de las preguntas de ejemplo o escribe la tuya propia en el chat para ver cómo responde El Festeret.
+          <p className="text-base sm:text-lg text-slate-300">
+            Haz clic en cualquiera de las preguntas habituales de una comparsa o escribe la tuya propia.
+            Observa la precisión y el tono festero con el que responde.
           </p>
         </div>
 
-        {/* Main Grid: Prompts + Phone Simulator */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center max-w-6xl mx-auto">
           
-          {/* Left Column: Quick prompt buttons */}
-          <div className="lg:col-span-5 space-y-4 order-2 lg:order-1">
-            <div className="space-y-2">
-              <h3 className="text-xs font-black uppercase tracking-wider text-slate-400 flex items-center gap-2">
-                <Bot className="w-4 h-4 text-amber-400" />
-                <span>Preguntas Frecuentes de Ejemplo:</span>
-              </h3>
-              <p className="text-xs text-slate-500">
-                Pulsa cualquier tarjeta para enviársela al simulador:
-              </p>
-            </div>
-
-            <div className="space-y-2.5">
-              {PRESET_QUESTIONS.map((q, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => handleSend(q.query)}
-                  className="w-full text-left p-3.5 rounded-2xl bg-[#0f172a]/90 hover:bg-[#1e293b] border border-white/10 hover:border-amber-400/40 text-slate-200 hover:text-white transition-all duration-200 group cursor-pointer shadow-sm hover:translate-x-1"
+          {/* Left Column: Preset Questions Selector */}
+          <div className="lg:col-span-5 space-y-4">
+            <div className="p-6 rounded-3xl bg-slate-900/70 border border-white/10 backdrop-blur-xl shadow-2xl">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-white font-bold text-base flex items-center gap-2">
+                  <span>🎯</span> Preguntas típicas de comparsistas:
+                </h3>
+                <button 
+                  onClick={handleReset}
+                  className="text-xs text-slate-400 hover:text-teal-300 flex items-center gap-1 transition-colors cursor-pointer"
+                  title="Reiniciar chat"
                 >
-                  <div className="flex items-center justify-between text-xs font-black text-amber-300 group-hover:text-amber-200">
-                    <span>{q.label}</span>
-                    <Send className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity text-amber-400" />
-                  </div>
-                  <p className="text-[11px] text-slate-400 mt-1 line-clamp-1 group-hover:text-slate-300">
-                    "{q.query}"
-                  </p>
+                  <RefreshCw className="w-3 h-3" />
+                  Reiniciar
                 </button>
-              ))}
+              </div>
+
+              <div className="space-y-2.5">
+                {PRESET_PROMPTS.map((item, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => handleSend(item.query)}
+                    className="w-full text-left p-3.5 rounded-2xl bg-slate-800/60 hover:bg-teal-950/40 border border-white/5 hover:border-teal-500/30 transition-all duration-200 group flex items-start gap-3 cursor-pointer"
+                  >
+                    <span className="text-xl p-1.5 bg-slate-800 rounded-xl group-hover:scale-110 transition-transform shrink-0">
+                      {item.icon}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-bold text-teal-300 mb-0.5">{item.label}</p>
+                      <p className="text-xs text-slate-300 line-clamp-1 group-hover:text-white transition-colors">{item.query}</p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-white/10 text-[11px] text-slate-400 flex items-center justify-between">
+                <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  IA entrenada con actas y estatutos
+                </span>
+                <span>⚡ Latencia ~1.2s</span>
+              </div>
             </div>
 
-            <div className="p-4 rounded-2xl bg-amber-400/5 border border-amber-400/20 text-xs text-amber-200/90 space-y-1">
-              <div className="flex items-center gap-1.5 font-bold text-amber-300">
-                <ShieldCheck className="w-4 h-4 text-amber-400" />
-                <span>Memoria y Datos 100% Blindados</span>
+            {/* Festero Quality Guarantee Box */}
+            <div className="p-4 rounded-2xl bg-gradient-to-r from-teal-950/40 to-slate-900 border border-teal-500/20 text-xs text-slate-300 flex items-center gap-3">
+              <div className="w-8 h-8 rounded-xl bg-teal-500/20 flex items-center justify-center text-amber-300 shrink-0">
+                <Heart className="w-4 h-4 fill-amber-300" />
               </div>
-              <p className="text-[11px] text-slate-400 leading-relaxed">
-                El bot solo responde a socios verificados por móvil, no da teléfonos privados de otros ni cruza datos de cuotas.
+              <p>
+                <strong className="text-white">Tono 100% festero y cercano:</strong> Habla como un miembro más de la comparsa, respetando jerarquías y tradiciones.
               </p>
             </div>
           </div>
 
-          {/* Right Column: Smartphone Mockup */}
-          <div className="lg:col-span-7 order-1 lg:order-2 flex justify-center">
-            <div className="w-full max-w-[380px] bg-[#0c1220] rounded-[44px] p-3.5 border-4 border-slate-700/60 shadow-2xl shadow-black/80 relative">
+          {/* Right Column: Mobile WhatsApp Frame */}
+          <div className="lg:col-span-7 flex justify-center">
+            <div className="w-full max-w-[400px] h-[590px] rounded-[44px] bg-[#0c1322] border-[7px] border-slate-700/80 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8),0_0_40px_rgba(20,184,166,0.15)] flex flex-col overflow-hidden relative">
               
-              {/* Phone speaker notch */}
-              <div className="absolute top-6 left-1/2 -translate-x-1/2 w-28 h-4 bg-slate-800 rounded-full z-20 flex items-center justify-center">
-                <div className="w-3 h-3 rounded-full bg-slate-900 mr-2" />
-                <div className="w-8 h-1 rounded-full bg-slate-700" />
+              {/* Phone Speaker & Camera Notch */}
+              <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-28 h-4 bg-slate-800 rounded-full z-30 flex items-center justify-center">
+                <div className="w-10 h-1 bg-slate-600 rounded-full" />
               </div>
 
-              {/* Chat Screen */}
-              <div className="bg-[#0b101c] rounded-[36px] overflow-hidden border border-white/5 flex flex-col h-[520px] relative">
+              {/* WhatsApp Header */}
+              <div className="pt-8 pb-3 px-4 bg-[#0d1e2e] border-b border-white/10 flex items-center justify-between text-white shrink-0 z-20">
+                <div className="flex items-center gap-2.5">
+                  <div className="relative">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-teal-500 to-amber-300 p-0.5">
+                      <div className="w-full h-full bg-slate-950 rounded-full flex items-center justify-center text-lg">
+                        🎺
+                      </div>
+                    </div>
+                    <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-[#0d1e2e]" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-1.5">
+                      <h4 className="font-bold text-sm tracking-tight">El Festeret IA</h4>
+                      <span className="text-[9px] bg-teal-500/20 text-teal-300 px-1.5 py-0.5 rounded-full font-bold">Oficial</span>
+                    </div>
+                    <p className="text-[10px] text-emerald-400 font-medium flex items-center gap-1">
+                      <span>en línea</span>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 text-slate-400 text-xs">
+                  <span className="bg-slate-800 px-2 py-1 rounded-lg text-[10px] text-slate-300 font-mono">WhatsApp</span>
+                </div>
+              </div>
+
+              {/* Chat Message Stream */}
+              <div className="flex-1 p-3.5 overflow-y-auto space-y-3 bg-[#080e18] bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:16px_16px]">
                 
-                {/* Chat App Header */}
-                <div className="bg-[#11192e] px-4 pt-8 pb-3 border-b border-white/10 flex items-center justify-between z-10">
-                  <div className="flex items-center gap-2.5">
-                    <div className="relative">
-                      <div className="w-9 h-9 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-slate-950 font-black text-sm shadow-md">
-                        🐪
-                      </div>
-                      <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-[#11192e]" />
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-1.5">
-                        <span className="font-black text-xs text-white">El Festeret</span>
-                        <span className="text-[9px] px-1.5 py-0.2 rounded bg-amber-400/20 text-amber-300 font-bold">BOT</span>
-                      </div>
-                      <p className="text-[10px] text-emerald-400 font-medium flex items-center gap-1">
-                        <span>en línea</span>
-                        <span className="text-slate-400">• Comparsa Taifas</span>
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Channel Switcher */}
-                  <div className="flex items-center bg-[#090d16] p-0.5 rounded-lg border border-white/10 text-[10px] font-bold">
-                    <button
-                      onClick={() => setActiveChannel('telegram')}
-                      className={`px-2 py-1 rounded-md transition-colors ${
-                        activeChannel === 'telegram' ? 'bg-sky-500 text-white' : 'text-slate-400 hover:text-white'
-                      }`}
-                    >
-                      Telegram
-                    </button>
-                    <button
-                      onClick={() => setActiveChannel('whatsapp')}
-                      className={`px-2 py-1 rounded-md transition-colors ${
-                        activeChannel === 'whatsapp' ? 'bg-emerald-600 text-white' : 'text-slate-400 hover:text-white'
-                      }`}
-                    >
-                      WhatsApp
-                    </button>
-                  </div>
+                <div className="text-center my-1">
+                  <span className="text-[10px] uppercase font-bold text-slate-400 bg-slate-800/80 px-2.5 py-1 rounded-full border border-white/5">
+                    Hoy · Comparsa Oficial
+                  </span>
                 </div>
 
-                {/* Messages Stream */}
-                <div className="flex-1 p-3.5 space-y-3 overflow-y-auto text-xs">
-                  <div className="text-center my-1">
-                    <span className="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/5 text-[9px] font-medium text-slate-400">
-                      Hoy · Chat en vivo
-                    </span>
-                  </div>
-
-                  {messages.map((m) => (
-                    <div
-                      key={m.id}
-                      className={`flex flex-col ${m.sender === 'user' ? 'items-end' : 'items-start'} animate-in fade-in slide-in-from-bottom-2`}
-                    >
-                      <div
-                        className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-xs leading-relaxed shadow-sm ${
-                          m.sender === 'user'
-                            ? activeChannel === 'whatsapp'
-                              ? 'bg-[#005c4b] text-white rounded-tr-xs'
-                              : 'bg-sky-600 text-white rounded-tr-xs'
-                            : 'bg-[#182238] text-slate-100 rounded-tl-xs border border-white/5'
-                        }`}
-                      >
-                        <p className="whitespace-pre-line">{m.text}</p>
-                        <div className="flex items-center justify-end gap-1 mt-1 text-[9px] text-slate-400">
-                          <span>{m.time}</span>
-                          {m.sender === 'user' && <CheckCheck className="w-3 h-3 text-sky-300 inline" />}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-
-                  {/* Typing indicator */}
-                  {isTyping && (
-                    <div className="flex items-center gap-1.5 p-2 rounded-2xl bg-[#182238] border border-white/5 w-16 animate-pulse">
-                      <span className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-bounce" />
-                      <span className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-bounce [animation-delay:0.2s]" />
-                      <span className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-bounce [animation-delay:0.4s]" />
-                    </div>
-                  )}
-
-                  <div ref={chatBottomRef} />
-                </div>
-
-                {/* Chat Input Bar */}
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    handleSend();
-                  }}
-                  className="p-2.5 bg-[#11192e] border-t border-white/10 flex items-center gap-2"
-                >
-                  <input
-                    type="text"
-                    value={inputText}
-                    onChange={(e) => setInputText(e.target.value)}
-                    placeholder="Escribe un mensaje de prueba..."
-                    className="flex-1 bg-[#090d16] border border-white/10 rounded-full px-4 py-2 text-xs text-white placeholder:text-slate-500 outline-none focus:border-amber-400/50"
-                  />
-                  <button
-                    type="submit"
-                    disabled={!inputText.trim()}
-                    className="w-8 h-8 rounded-full bg-amber-400 hover:bg-amber-300 disabled:opacity-40 text-slate-950 flex items-center justify-center transition-transform hover:scale-105 active:scale-95 cursor-pointer"
+                {messages.map((m) => (
+                  <div
+                    key={m.id}
+                    className={`flex flex-col ${m.sender === 'user' ? 'items-end' : 'items-start'}`}
                   >
-                    <Send className="w-3.5 h-3.5" />
-                  </button>
-                </form>
+                    <div
+                      className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-xs shadow-md ${
+                        m.sender === 'user'
+                          ? 'bg-gradient-to-r from-teal-600 to-emerald-600 text-white rounded-tr-none'
+                          : 'bg-[#152336] text-slate-100 rounded-tl-none border border-white/10'
+                      }`}
+                    >
+                      {m.badge && (
+                        <div className="mb-1 text-[9px] font-bold text-amber-300 flex items-center gap-1">
+                          <Sparkles className="w-2.5 h-2.5" />
+                          <span>{m.badge}</span>
+                        </div>
+                      )}
+                      
+                      <p className="leading-relaxed whitespace-pre-line font-sans">
+                        {m.text}
+                      </p>
 
+                      <div className="mt-1 flex items-center justify-end gap-1 text-[9px] text-slate-400">
+                        <span>{m.time}</span>
+                        {m.sender === 'user' && (
+                          <CheckCheck className="w-3 h-3 text-teal-300" />
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+
+                {isTyping && (
+                  <div className="flex items-center gap-1.5 bg-[#152336] border border-white/10 rounded-2xl rounded-tl-none px-3.5 py-2.5 w-20">
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-bounce [animation-delay:-0.3s]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-bounce [animation-delay:-0.15s]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-bounce" />
+                  </div>
+                )}
+
+                <div ref={messagesEndRef} />
               </div>
+
+              {/* Chat Input Bar */}
+              <div className="p-2.5 bg-[#0d1e2e] border-t border-white/10 flex items-center gap-2 shrink-0">
+                <input
+                  type="text"
+                  value={inputVal}
+                  onChange={(e) => setInputVal(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+                  placeholder="Escribe una pregunta festera..."
+                  className="flex-1 bg-slate-900/90 border border-white/10 rounded-xl px-3.5 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-teal-400 transition-colors"
+                />
+                <button
+                  onClick={() => handleSend()}
+                  disabled={!inputVal.trim() || isTyping}
+                  className="w-8 h-8 rounded-xl bg-gradient-to-r from-teal-400 to-emerald-400 hover:from-teal-300 hover:to-emerald-300 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center text-slate-950 font-bold transition-all cursor-pointer shadow-md"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                </button>
+              </div>
+
             </div>
           </div>
 

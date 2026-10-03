@@ -1,91 +1,101 @@
-import React, { useState } from 'react';
-import { Clock, MessageSquare, Zap, Users, Sparkles } from 'lucide-react';
+import { useState } from 'react';
+import { Calculator, Clock, MessageSquare, HeartHandshake } from 'lucide-react';
 
 export const RoiCalculator: React.FC = () => {
-  const [festerosCount, setFesterosCount] = useState<number>(25);
+  const [members, setMembers] = useState(120);
 
   // Estimations
-  const hoursSaved = Math.round(festerosCount * 5.5);
-  const questionsAvoided = Math.round(festerosCount * 45);
-  const annualCost = festerosCount <= 35 ? 99 : 390;
-  const costPerFestero = (annualCost / festerosCount).toFixed(1);
+  const messagesPerYear = members * 18;
+  const hoursSaved = Math.round(members * 0.45);
 
   return (
-    <section className="py-20 bg-[#070b14] relative border-y border-white/5">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 relative bg-[#070c18] overflow-hidden">
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <div className="bg-gradient-to-br from-[#0e172a] via-[#121c33] to-[#0a1020] rounded-3xl border border-white/10 p-6 sm:p-10 shadow-2xl space-y-8">
-          
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-[11px] font-black uppercase tracking-wider">
-              <Zap className="w-3 h-3 text-emerald-400" />
-              <span>Calculadora de Ahorro para Directivas</span>
-            </div>
-            <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
-              ¿Cuánto tiempo pierde tu Junta Directiva?
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-400">
-              Desliza para indicar el número de componentes en tu escuadra, peña o comparsa:
-            </p>
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/25 text-teal-300 text-xs font-bold uppercase tracking-wider mb-4">
+            <Calculator className="w-3.5 h-3.5 text-amber-300" />
+            Calculadora de Paz Mental
           </div>
+          <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight mb-4 font-sans">
+            ¿Cuánto tiempo ahorrará tu directiva?
+          </h2>
+          <p className="text-base sm:text-lg text-slate-300">
+            Mueve el selector según el número de socios o comparsistas y descubre el impacto inmediato en tranquilidad.
+          </p>
+        </div>
 
-          {/* Interactive Slider */}
-          <div className="max-w-xl mx-auto space-y-4">
-            <div className="flex items-center justify-between font-black text-white text-base sm:text-xl">
-              <span className="flex items-center gap-2 text-slate-300 text-sm">
-                <Users className="w-4 h-4 text-amber-400" />
-                <span>Componentes / Socios:</span>
-              </span>
-              <span className="px-4 py-1.5 rounded-xl bg-amber-400 text-slate-950 text-xl font-mono shadow-md">
-                {festerosCount} festeros
-              </span>
+        {/* Interactive Calculator Card */}
+        <div className="max-w-4xl mx-auto p-8 sm:p-12 rounded-3xl bg-slate-900/70 border border-white/10 shadow-2xl backdrop-blur-xl">
+          
+          {/* Slider Control */}
+          <div className="mb-12 text-center">
+            <label className="block text-sm font-bold uppercase tracking-widest text-slate-400 mb-2">
+              Número de socios / festeros en tu comparsa o filà:
+            </label>
+            <div className="text-5xl sm:text-6xl font-black text-white mb-6 font-sans">
+              <span className="bg-gradient-to-r from-teal-300 via-emerald-400 to-amber-300 bg-clip-text text-transparent">
+                {members}
+              </span>{' '}
+              <span className="text-2xl sm:text-3xl text-slate-400 font-medium">festeros</span>
             </div>
-
+            
             <input
               type="range"
-              min="10"
-              max="250"
+              min="15"
+              max="500"
               step="5"
-              value={festerosCount}
-              onChange={(e) => setFesterosCount(parseInt(e.target.value, 10))}
-              className="w-full h-3 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-400"
+              value={members}
+              onChange={(e) => setMembers(Number(e.target.value))}
+              className="w-full h-3 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-teal-400 hover:accent-teal-300 transition-all"
             />
-
-            <div className="flex justify-between text-[11px] font-bold text-slate-500">
-              <span>10 (Escuadra pequeña)</span>
-              <span>50 (Filà media)</span>
-              <span>250+ (Gran Comparsa)</span>
+            
+            <div className="flex justify-between text-xs text-slate-400 mt-2 font-medium">
+              <span>Escuadra (15)</span>
+              <span>Comparsa Media (120)</span>
+              <span>Gran Comparsa (500+)</span>
             </div>
           </div>
 
-          {/* Results Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-white/10">
+          {/* Real-time Calculation Results */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-white/10">
             
-            <div className="p-5 rounded-2xl bg-white/5 border border-white/5 text-center space-y-1">
-              <div className="flex items-center justify-center gap-1.5 text-slate-400 text-xs font-bold mb-1">
-                <Clock className="w-4 h-4 text-amber-400" />
-                <span>Tiempo Ahorrado al Año</span>
+            <div className="p-6 rounded-2xl bg-slate-800/50 border border-white/5 text-center">
+              <div className="w-12 h-12 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-300 mx-auto mb-4">
+                <Clock className="w-6 h-6" />
               </div>
-              <p className="text-3xl font-black text-white font-mono">~{hoursSaved} h</p>
-              <p className="text-[11px] text-slate-400">en mensajes, llamadas y listas</p>
+              <div className="text-3xl font-black text-white mb-1">
+                ~{hoursSaved}h
+              </div>
+              <p className="text-xs text-slate-300 font-medium">
+                Horas de llamadas y gestiones ahorradas al año
+              </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-white/5 border border-white/5 text-center space-y-1">
-              <div className="flex items-center justify-center gap-1.5 text-slate-400 text-xs font-bold mb-1">
-                <MessageSquare className="w-4 h-4 text-sky-400" />
-                <span>Preguntas Resueltas</span>
+            <div className="p-6 rounded-2xl bg-slate-800/50 border border-white/5 text-center">
+              <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-300 mx-auto mb-4">
+                <MessageSquare className="w-6 h-6" />
               </div>
-              <p className="text-3xl font-black text-sky-300 font-mono">~{questionsAvoided}</p>
-              <p className="text-[11px] text-slate-400">contestadas 24/7 en segundos</p>
+              <div className="text-3xl font-black text-white mb-1">
+                ~{messagesPerYear.toLocaleString()}
+              </div>
+              <p className="text-xs text-slate-300 font-medium">
+                Mensajes y dudas repetitivas respondidas por la IA
+              </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-center space-y-1">
-              <div className="flex items-center justify-center gap-1.5 text-emerald-300 text-xs font-bold mb-1">
-                <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span>Coste por Festero</span>
+            <div className="p-6 rounded-2xl bg-slate-800/50 border border-white/5 text-center">
+              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-300 mx-auto mb-4">
+                <HeartHandshake className="w-6 h-6" />
               </div>
-              <p className="text-3xl font-black text-emerald-400 font-mono">{costPerFestero} € <span className="text-xs font-normal text-emerald-300">/año</span></p>
-              <p className="text-[11px] text-emerald-200/80">¡Menos de 1 cubata en fiestas!</p>
+              <div className="text-3xl font-black text-white mb-1">
+                0 líos
+              </div>
+              <p className="text-xs text-slate-300 font-medium">
+                En listas de cenas, alergias y cobros de cuotas
+              </p>
             </div>
 
           </div>

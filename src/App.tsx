@@ -13,28 +13,35 @@ import { Footer } from './components/Footer';
 export function App() {
   const [demoModalOpen, setDemoModalOpen] = useState(false);
 
+  const scrollToSimulator = () => {
+    document.getElementById('demo')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <div className="min-h-screen bg-[#070b14] text-slate-100 selection:bg-amber-400 selection:text-slate-950 font-sans antialiased">
+    <div className="min-h-screen bg-[#050811] text-slate-100 selection:bg-teal-400 selection:text-slate-950 font-sans antialiased">
       {/* Top Navbar */}
-      <Navbar onOpenDemoModal={() => setDemoModalOpen(true)} />
+      <Navbar onOpenDemo={() => setDemoModalOpen(true)} />
 
-      {/* Hero Section */}
-      <Hero onOpenDemoModal={() => setDemoModalOpen(true)} />
+      {/* Hero Section with Cinematic Parade Background */}
+      <Hero 
+        onOpenDemo={() => setDemoModalOpen(true)} 
+        onTrySimulator={scrollToSimulator}
+      />
 
-      {/* Live Chat Simulator */}
+      {/* Live Interactive WhatsApp Simulator */}
       <ChatSimulator />
 
-      {/* Why No-App / Comparison with traditional apps */}
+      {/* Traditional App vs festeret.ai Copilot Comparison */}
       <Comparison />
 
-      {/* Key Superpowers & Features */}
-      <Features onOpenDemoModal={() => setDemoModalOpen(true)} />
+      {/* Key Superpowers with Authentic Dinner & Heritage Storytelling */}
+      <Features />
 
-      {/* ROI & Time Saved Calculator */}
+      {/* ROI & Peace of Mind Calculator */}
       <RoiCalculator />
 
-      {/* Pricing Plans */}
-      <Pricing onOpenDemoModal={() => setDemoModalOpen(true)} />
+      {/* Transparent Pricing Plans & Castle Fireworks Climax */}
+      <Pricing onOpenDemo={() => setDemoModalOpen(true)} />
 
       {/* Frequently Asked Questions */}
       <Faq />
@@ -42,7 +49,7 @@ export function App() {
       {/* Footer */}
       <Footer />
 
-      {/* Demo Request Modal */}
+      {/* Lead Generation & WhatsApp Demo Request Modal */}
       <DemoModal isOpen={demoModalOpen} onClose={() => setDemoModalOpen(false)} />
     </div>
   );
