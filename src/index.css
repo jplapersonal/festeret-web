@@ -120,8 +120,42 @@
   }
 }
 
+/* Agent visuals: data flowing along SVG paths (paths use pathLength="100") */
+@keyframes flow {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
+}
+.flow { stroke-dasharray: 6 94; animation: flow 3.2s linear infinite; }
+.marquee-track.reverse { animation-direction: reverse; animation-duration: 60s; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+.orbit { transform-box: fill-box; transform-origin: center; animation: spin 48s linear infinite; }
+.orbit-rev { transform-box: fill-box; transform-origin: center; animation: spin 72s linear infinite reverse; }
+
+@keyframes ping-ring {
+  from { transform: scale(0.35); opacity: 0.8; }
+  to { transform: scale(1); opacity: 0; }
+}
+.ping-ring { transform-box: fill-box; transform-origin: center; animation: ping-ring 3.6s cubic-bezier(0.2, 0.7, 0.3, 1) infinite; }
+
+@keyframes node-lit {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+.node-lit { animation: node-lit 3.6s ease-in-out infinite; }
+
+@keyframes step-in {
+  from { opacity: 0; transform: translateX(-6px); }
+  to { opacity: 1; transform: none; }
+}
+.step-in { animation: step-in 0.3s ease-out both; }
+
+@keyframes spinner { to { transform: rotate(360deg); } }
+.spinner { animation: spinner 0.8s linear infinite; }
+
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track, .kenburns, .bubble-in, .typing-dot { animation: none !important; }
+  .marquee-track, .kenburns, .bubble-in, .typing-dot,
+  .flow, .orbit, .orbit-rev, .ping-ring, .node-lit, .step-in, .spinner { animation: none !important; }
 }
 
 /* WhatsApp wallpaper pattern */

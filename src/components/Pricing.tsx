@@ -47,7 +47,7 @@ export function Pricing({ onOpenDemo }: PricingProps) {
           {/* Entidad */}
           <div className="reveal rounded-[2rem] bg-ink text-paper p-8 sm:p-10 flex flex-col shadow-[0_40px_80px_-30px_rgba(22,17,13,0.6)] lg:-my-4">
             <p className="eyebrow text-oro">Comparsa · Filà · Falla · Cofradía</p>
-            <p className="mt-6 font-display text-[clamp(3.5rem,7vw,5rem)] font-medium leading-none">190 €</p>
+            <p className="mt-6 font-display text-[clamp(3.5rem,7vw,5rem)] font-medium leading-none">199 €</p>
             <p className="mt-2 text-paper/70">al año, para todos sus miembros</p>
             <div className="mt-6 rounded-2xl bg-paper/[0.06] ring-1 ring-paper/15 p-5">
               <p className="text-[16px]">

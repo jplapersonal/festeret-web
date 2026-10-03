@@ -39,6 +39,7 @@ export function Navbar({ onOpenDemo }: NavbarProps) {
           <Logo light={!scrolled} />
         </a>
         <nav className="hidden md:flex items-center gap-9">
+          <a href="#agente" className={link}>El agente</a>
           <a href="#como-funciona" className={link}>Cómo funciona</a>
           <a href="#pruebalo" className={link}>Pruébalo</a>
           <a href="#precios" className={link}>Precios</a>

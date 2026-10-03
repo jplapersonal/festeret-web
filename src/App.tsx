@@ -3,6 +3,8 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Marquee } from './components/Marquee';
 import { Problem } from './components/Problem';
+import { Agent } from './components/Agent';
+import { Network } from './components/Network';
 import { HowItWorks } from './components/HowItWorks';
 import { Simulator } from './components/Simulator';
 import { Capabilities } from './components/Capabilities';
@@ -24,10 +26,12 @@ export function App() {
         <Hero onOpenDemo={open} />
         <Marquee />
         <Problem />
+        <Agent />
         <HowItWorks />
         <Simulator />
         <Capabilities />
         <Manifesto />
+        <Network />
         <Pricing onOpenDemo={open} />
         <Faq />
         <FinalCta onOpenDemo={open} />
