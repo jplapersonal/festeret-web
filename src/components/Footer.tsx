@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Logo } from './Navbar';
-import { LegalModal } from './LegalModal';
+// import { LegalModal } from './LegalModal';
 
-type LegalType = 'aviso' | 'privacidad' | 'cookies' | null;
+// type LegalType = 'aviso' | 'privacidad' | 'cookies' | null;
 
 export function Footer() {
-  const [legalOpen, setLegalOpen] = useState<LegalType>(null);
+  // const [legalOpen, setLegalOpen] = useState<LegalType>(null);
 
   return (
     <>

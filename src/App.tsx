@@ -16,7 +16,7 @@ import { Contact } from "./components/Contact";
 import { FinalCta } from './components/FinalCta';
 import { Footer } from './components/Footer';
 import { DemoModal } from './components/DemoModal';
-import { CookieBanner } from './components/CookieBanner';
+// import { CookieBanner } from './components/CookieBanner';
 
 export function App() {
   const [demoOpen, setDemoOpen] = useState(false);
