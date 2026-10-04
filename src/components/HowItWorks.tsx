@@ -35,7 +35,7 @@ export function HowItWorks() {
             />
             <div className="absolute -bottom-7 right-0 sm:-right-8 max-w-[260px] rounded-2xl bg-ink/10 backdrop-blur-md ring-1 ring-ink/10 text-ink p-4 shadow-2xl">
               <p className="text-[11px] font-semibold uppercase tracking-widest text-grana">En plena Entrà</p>
-              <p className="mt-1 text-[15px] leading-snug">“¿Dónde nos toca parar para el relevo?” — contestado en 2 segundos.</p>
+              <p className="mt-1 text-[15px] leading-snug">“¿En qué orden de escuadras salimos y con qué banda de música?” — contestado en 2 segundos.</p>
             </div>
           </div>
         </div>
