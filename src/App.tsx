@@ -42,7 +42,7 @@ export function App() {
       </main>
       <Footer />
       <DemoModal isOpen={demoOpen} onClose={() => setDemoOpen(false)} />
-      <CookieBanner />
+      {/* <CookieBanner /> Temporarily disabled until legal entity is decided */}
     </>
   );
 }

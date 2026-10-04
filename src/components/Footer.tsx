@@ -22,11 +22,13 @@ export function Footer() {
               <a href="#precios" className="hover:text-ink">Precios</a>
               <a href="#preguntas" className="hover:text-ink">Preguntas</a>
             </nav>
+            {/* Temporarily disabled until legal entity is decided
             <nav className="flex flex-wrap gap-x-6 gap-y-2 text-xs opacity-70">
               <button onClick={() => setLegalOpen('aviso')} className="hover:text-ink transition-colors">Aviso Legal</button>
               <button onClick={() => setLegalOpen('privacidad')} className="hover:text-ink transition-colors">Privacidad</button>
               <button onClick={() => setLegalOpen('cookies')} className="hover:text-ink transition-colors">Cookies</button>
             </nav>
+            */}
           </div>
           <div className="text-sm md:text-right">
             <p className="font-display text-ink/80">Fet a Ontinyent, amb festa.</p>
@@ -34,7 +36,7 @@ export function Footer() {
           </div>
         </div>
       </footer>
-      <LegalModal type={legalOpen} onClose={() => setLegalOpen(null)} />
+      {/* <LegalModal type={legalOpen} onClose={() => setLegalOpen(null)} /> */}
     </>
   );
 }
