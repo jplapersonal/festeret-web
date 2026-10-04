@@ -151,8 +151,8 @@ export function Agent() {
           loading="lazy"
           className="absolute inset-0 h-full w-full object-cover object-[70%_50%]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/10" />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-paper via-paper/55 to-paper/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-paper/80 via-paper/20 to-transparent" />
         <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-8 pb-16 sm:pb-24 pt-40">
           <p className="eyebrow text-oro reveal flex items-center gap-3">
             <span className="h-px w-10 bg-oro" />

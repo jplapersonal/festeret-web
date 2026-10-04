@@ -16,7 +16,7 @@ export function Capabilities() {
           {/* Dinars */}
           <article className="reveal group relative md:col-span-4 md:row-span-2 overflow-hidden rounded-[2rem] bg-ink/5 text-ink min-h-[460px]">
             <img src={dinnerImg} alt="Cena de comparsa con brindis" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.5s] group-hover:scale-105" />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-paper via-paper/40 to-transparent" />
             <div className="relative h-full flex flex-col justify-end p-8 sm:p-10">
               <p className="eyebrow text-oro">Dinars, sopars y alergias</p>
               <h3 className="font-display mt-3 text-3xl sm:text-5xl font-medium leading-[1.02] max-w-xl">
@@ -32,7 +32,7 @@ export function Capabilities() {
           {/* Indumentaria */}
           <article className="reveal group relative md:col-span-2 overflow-hidden rounded-[2rem] bg-satin text-paper min-h-[280px]">
             <img src={fabricImg} alt="Satén turquesa con bordado dorado" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-[1.5s] group-hover:scale-105" />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/90 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-paper/90 to-transparent" />
             <div className="relative h-full flex flex-col justify-end p-7">
               <h3 className="font-display text-2xl font-medium">Indumentaria</h3>
               <p className="mt-2 text-paper/80 text-[15px]">Gala, xilaba, telas, proveedores y tallas. Sin buscar en el acta de mayo.</p>

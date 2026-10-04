@@ -8,10 +8,10 @@ interface OwlProps {
   title?: string;
 }
 
-const CREAM = '#f3ebdd';
-const GRANA = '#a3172b';
-const ORO = '#d4a23a';
-const INK = '#16110d';
+const CREAM = '#f8fafc';
+const GRANA = '#f43f5e';
+const ORO = '#f59e0b';
+const INK = '#09090b';
 
 /**
  * El Festeret — the wise owl. Hand-built geometry on a 100×100 grid:
