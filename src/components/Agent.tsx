@@ -161,7 +161,7 @@ export function Agent() {
           <h2 className="font-display mt-6 text-[clamp(2.8rem,7.5vw,7rem)] leading-[0.92] font-medium reveal max-w-5xl">
             No es un chatbot.
             <br />
-            <em className="text-oro">Es un agente.</em>
+            <em className="text-oro">Es un agente de IA.</em>
           </h2>
           <p className="mt-8 max-w-2xl text-lg sm:text-xl leading-relaxed text-ink/80 reveal">
             Un chatbot repite respuestas. El Festeret entiende lo que le pides, busca en lo que es vuestro, comprueba la
