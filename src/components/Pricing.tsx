@@ -87,11 +87,10 @@ export function Pricing({ onOpenDemo }: PricingProps) {
         </div>
 
         <div className="reveal mt-12 rounded-[2rem] ring-1 ring-ink/10 bg-paper-2/60 p-8 sm:p-10">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            <p className="eyebrow text-ink/60 shrink-0">Todo incluido en cualquier plan</p>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <p className="eyebrow text-ink/60">Todo incluido en cualquier plan</p>
             <p className="text-sm text-ink/50 md:text-right">
-              <strong className="font-medium text-ink/65">Nota sobre WhatsApp:</strong> Telegram es 100% gratuito e ilimitado. Si decidís conectar WhatsApp Oficial, Meta (Facebook) cobra un pequeño coste por cada mensaje enviado/recibido que se facturará aparte.<br/>
-              <span className="opacity-75 mt-1 block">IVA no incluido · ¿Ya pagabais como escuadra? Os lo descontamos al entrar la comparsa.</span>
+              IVA no incluido · ¿Ya pagabais como escuadra? Os lo descontamos al entrar la comparsa.
             </p>
           </div>
           <ul className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4 text-[16px]">
@@ -102,6 +101,11 @@ export function Pricing({ onOpenDemo }: PricingProps) {
               </li>
             ))}
           </ul>
+          <div className="mt-8 pt-6 border-t border-ink/5">
+            <p className="text-[13.5px] text-ink/50 italic text-center sm:text-left leading-relaxed">
+              <strong className="font-medium not-italic text-ink/65">Nota sobre WhatsApp:</strong> Telegram es 100% gratuito e ilimitado. Si decidís conectar WhatsApp Oficial, Meta (Facebook) cobra un pequeño coste por cada mensaje enviado/recibido que se facturará aparte.
+            </p>
+          </div>
         </div>
       </div>
     </section>
