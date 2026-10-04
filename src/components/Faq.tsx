@@ -12,8 +12,8 @@ const FAQS = [
     a: 'No. Solo responde a festeros dados de alta por su número, y lo económico es individual: cada uno ve lo suyo. No comparte teléfonos ni datos personales de nadie.',
   },
   {
-    q: '¿Habla en valencià?',
-    a: 'Sí. En castellano, en valencià o en los dos, y con el tono que queráis. Le podéis poner el nombre que queráis: “El Festeret de Taifas”, “El Maseret”, “El Falleret”…',
+    q: '¿Habla otros idiomas o dialectos?',
+    a: 'Sí. Habla cualquier idioma perfectamente, y con el tono que queráis. Le podéis poner el nombre que queráis: “El Festeret de Taifas”, “El Maseret”, “El Falleret”…',
   },
   {
     q: '¿Por qué se paga por escuadra y no por festero?',

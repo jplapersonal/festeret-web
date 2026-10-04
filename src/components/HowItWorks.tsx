@@ -11,7 +11,7 @@ const STEPS = [
   {
     n: '02',
     t: 'Le damos nombre y carácter',
-    d: '“El Festeret de la vostra comparsa”. Con vuestro escudo, en castellano o en valencià, y con vuestra manera de hablar.',
+    d: '“El Festeret de la vostra comparsa”. Con vuestro escudo, en tu idioma, y con vuestra manera de hablar.',
   },
   {
     n: '03',

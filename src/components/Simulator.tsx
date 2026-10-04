@@ -9,7 +9,7 @@ const PRESETS = [
     a: 'Sábado a las **17:00**. Formamos a las **16:15** en la Plaça de Baix, detrás de la banda. Llega con 15 minutos de margen para pasar lista 😉',
   },
   {
-    q: '¿Dónde pido la tela de la xilaba de diario?',
+    q: '¿Dónde pido la tela de la chilaba de diario?',
     a: 'Según el **acta del 26/09**: satén turquesa, se encarga en la tienda de siempre diciendo que eres de la comparsa. El delegado de indumentaria tiene la referencia exacta.',
   },
   {
@@ -22,7 +22,7 @@ const PRESETS = [
   },
   {
     q: '¿Qué hay que llevar a la Diana?',
-    a: 'Xilaba de diario, fajín y babutxes. **Nada de gala**. Y algo de abrigo, que a las 7:30 refresca.',
+    a: 'chilaba de diario, fajín y babutxes. **Nada de gala**. Y algo de abrigo, que a las 7:30 refresca.',
   },
 ];
 

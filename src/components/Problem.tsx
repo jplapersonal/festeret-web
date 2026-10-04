@@ -1,6 +1,6 @@
 const NOISE = [
   { who: 'Paco', color: 'text-[#b4532a]', text: '¿A qué hora es la Entrà al final?', time: '19:02' },
-  { who: 'Marta', color: 'text-[#1f6f78]', text: '¿Alguien sabe dónde se pide la tela de la xilaba?', time: '19:05' },
+  { who: 'Marta', color: 'text-[#1f6f78]', text: '¿Alguien sabe dónde se pide la tela de la chilaba?', time: '19:05' },
   { who: 'Vicent', color: 'text-[#7a4fa3]', text: '¿Hay menú celíaco en el dinar del bou?', time: '19:11' },
   { who: 'Toni', color: 'text-[#2f7a3b]', text: '¿Ya han pasado el recibo de octubre?', time: '20:30' },
   { who: 'Paco', color: 'text-[#b4532a]', text: 'Perdonad, ¿a qué hora era? 😅', time: '22:58' },

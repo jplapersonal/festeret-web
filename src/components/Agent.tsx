@@ -23,7 +23,7 @@ const LOOP = [
   {
     n: '01',
     t: 'Entiende',
-    d: 'Lo que le preguntas, como lo preguntes: con prisas, con faltas o en valencià.',
+    d: 'Lo que le preguntas, como lo preguntes: con prisas, con faltas o en vuestro idioma.',
     code: 'intención: hora_entrà · sábado',
   },
   {

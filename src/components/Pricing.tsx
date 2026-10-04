@@ -4,7 +4,7 @@ interface PricingProps {
 
 const INCLUDED = [
   'Consultas ilimitadas por WhatsApp o Telegram',
-  'Vuestro nombre, escudo e idioma (castellano o valencià)',
+  'Vuestro nombre, escudo e idioma (multidioma)',
   'Todas vuestras actas y documentos',
   'Comidas, cenas, alergias y cuotas',
   'Avisos a todos por Canal de WhatsApp',

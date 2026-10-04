@@ -30,12 +30,12 @@ export function Capabilities() {
           </article>
 
           {/* Indumentaria */}
-          <article className="reveal group relative md:col-span-2 overflow-hidden rounded-[2rem] bg-satin text-paper min-h-[280px]">
+          <article className="reveal group relative md:col-span-2 overflow-hidden rounded-[2rem] bg-satin text-ink min-h-[280px]">
             <img src={fabricImg} alt="Satén turquesa con bordado dorado" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-[1.5s] group-hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-paper/90 to-transparent" />
             <div className="relative h-full flex flex-col justify-end p-7">
               <h3 className="font-display text-2xl font-medium">Indumentaria</h3>
-              <p className="mt-2 text-paper/80 text-[15px]">Gala, xilaba, telas, proveedores y tallas. Sin buscar en el acta de mayo.</p>
+              <p className="mt-2 text-ink/80 text-[15px]">Gala, chilaba, telas, proveedores y tallas. Sin buscar en el acta de mayo.</p>
             </div>
           </article>
 

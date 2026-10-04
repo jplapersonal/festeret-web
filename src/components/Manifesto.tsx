@@ -1,6 +1,9 @@
+import bgSimplicity from "../assets/manifesto-bg.jpg";
+
 export function Manifesto() {
   return (
-    <section className="bg-paper text-ink py-28 sm:py-40">
+    <section className="relative bg-paper text-ink py-28 sm:py-40 overflow-hidden">
+      <img src={bgSimplicity} alt="" className="absolute inset-0 w-full h-full object-cover opacity-15 mix-blend-screen" />
       <div className="mx-auto max-w-5xl px-5 sm:px-8 text-center">
         <p className="eyebrow text-oro reveal">Por qué no otra app</p>
         <h2 className="font-display mt-6 text-[clamp(2.6rem,6.5vw,5.8rem)] leading-[0.98] font-medium reveal">
