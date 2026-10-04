@@ -61,10 +61,10 @@ export function Capabilities() {
 
           {/* Avisos */}
           <article className="reveal md:col-span-3 rounded-[2rem] bg-grana text-ink p-8 sm:p-10 flex flex-col justify-between">
-            <p className="eyebrow text-oro">Avisos</p>
+            <p className="eyebrow text-oro">Proactividad</p>
             <div>
-              <h3 className="font-display text-3xl sm:text-4xl font-medium leading-tight">La directiva avisa una vez. Llega a todos.</h3>
-              <p className="mt-3 text-ink/80 text-base">Y las dudas que provoca el aviso las resuelve él, no tu teléfono.</p>
+              <h3 className="font-display text-3xl sm:text-4xl font-medium leading-tight">La directiva avisa una vez. Él se acuerda de todo.</h3>
+              <p className="mt-3 text-ink/80 text-base">Resuelve dudas, organiza las listas y felicita automáticamente a cada festero por su cumpleaños en el grupo.</p>
             </div>
           </article>
 

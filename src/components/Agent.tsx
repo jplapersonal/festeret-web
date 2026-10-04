@@ -15,7 +15,7 @@ const ACTIONS = [
   ['Apunta', 'asistencia y menús'],
   ['Recuerda', 'pagos y ensayos'],
   ['Avisa', 'a quien toque'],
-  ['Resume', 'el acta en 5 líneas'],
+  ['Felicita', 'cumpleaños al grupo'],
   ['Pregunta', 'a la directiva si duda'],
 ];
 
@@ -41,8 +41,8 @@ const LOOP = [
   {
     n: '04',
     t: 'Actúa',
-    d: 'No solo contesta. Apunta, recuerda, organiza turnos y avisa a quien toque.',
-    code: 'apuntar() · recordar() · avisar()',
+    d: 'No solo contesta. Apunta, recuerda, avisa y felicita cumpleaños.',
+    code: 'apuntar() · avisar() · felicitar()',
   },
 ];
 
