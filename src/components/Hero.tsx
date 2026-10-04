@@ -100,15 +100,15 @@ export function Hero({ onOpenDemo }: HeroProps) {
   const { msgs, typing, trace, done } = useAutoplayChat();
 
   return (
-    <section id="top" className="relative min-h-[100svh] overflow-hidden bg-ink text-paper">
+    <section id="top" className="relative min-h-[100svh] overflow-hidden bg-paper text-ink">
       <img
         src={paradeImg}
         alt="Desfile nocturno de Moros y Cristianos frente al castillo iluminado"
         className="kenburns absolute inset-0 h-full w-full object-cover"
         fetchPriority="high"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/70 to-ink/10" />
-      <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-ink to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-paper/95 via-paper/70 to-paper/10" />
+      <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-paper to-transparent" />
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8 pt-28 pb-16 lg:pt-28 grid lg:grid-cols-12 gap-14 items-center min-h-[100svh]">
         <div className="lg:col-span-7 min-w-0">
@@ -125,37 +125,37 @@ export function Hero({ onOpenDemo }: HeroProps) {
             <em className="font-semibold text-oro">Más fiesta.</em>
           </h1>
 
-          <p className="mt-8 max-w-xl text-lg sm:text-xl leading-relaxed text-paper/80">
+          <p className="mt-8 max-w-xl text-lg sm:text-xl leading-relaxed text-ink/80">
             El Festeret es un agente de inteligencia artificial que vive en el WhatsApp de tu comparsa. Se ha leído
             vuestras actas, horarios y normas, razona cada pregunta y actúa: contesta, apunta y avisa en segundos.{' '}
-            <span className="text-paper">Sin apps. Sin contraseñas.</span>
+            <span className="text-ink">Sin apps. Sin contraseñas.</span>
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <button
               onClick={onOpenDemo}
-              className="rounded-full bg-grana hover:bg-grana-2 px-8 py-4 text-base font-semibold text-paper shadow-[0_10px_30px_-10px_rgba(163,23,43,0.8)] transition-all hover:-translate-y-0.5 cursor-pointer"
+              className="rounded-full bg-grana hover:bg-grana-2 px-8 py-4 text-base font-semibold text-ink shadow-[0_10px_30px_-10px_rgba(163,23,43,0.8)] transition-all hover:-translate-y-0.5 cursor-pointer"
             >
               Pide tu Festeret
             </button>
             <a
               href="#pruebalo"
-              className="group inline-flex items-center gap-2 rounded-full border border-paper/30 px-7 py-4 text-base font-medium text-paper hover:bg-paper hover:text-ink transition-colors"
+              className="group inline-flex items-center gap-2 rounded-full border border-ink/30 px-7 py-4 text-base font-medium text-ink hover:bg-ink hover:text-paper transition-colors"
             >
               Háblale ahora
               <span className="transition-transform group-hover:translate-x-1">→</span>
             </a>
           </div>
 
-          <dl className="mt-14 grid grid-cols-3 max-w-lg divide-x divide-paper/15 border-t border-paper/15 pt-6">
+          <dl className="mt-14 grid grid-cols-3 max-w-lg divide-x divide-ink/15 border-t border-ink/15 pt-6">
             {[
               ['0', 'apps que instalar'],
               ['24h', 'en marcha'],
               ['<3 s', 'por respuesta'],
             ].map(([n, l]) => (
               <div key={l} className="px-4 first:pl-0">
-                <dt className="font-display text-3xl sm:text-4xl font-medium text-paper">{n}</dt>
-                <dd className="mt-1 text-xs sm:text-sm text-paper/60">{l}</dd>
+                <dt className="font-display text-3xl sm:text-4xl font-medium text-ink">{n}</dt>
+                <dd className="mt-1 text-xs sm:text-sm text-ink/60">{l}</dd>
               </div>
             ))}
           </dl>

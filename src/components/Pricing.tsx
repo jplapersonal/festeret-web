@@ -45,27 +45,27 @@ export function Pricing({ onOpenDemo }: PricingProps) {
           </div>
 
           {/* Entidad */}
-          <div className="reveal rounded-[2rem] bg-ink text-paper p-8 sm:p-10 flex flex-col shadow-[0_40px_80px_-30px_rgba(22,17,13,0.6)] lg:-my-4">
+          <div className="reveal rounded-[2rem] bg-ink/10 text-ink ring-1 ring-grana/40 p-8 sm:p-10 flex flex-col shadow-[0_40px_80px_-30px_rgba(22,17,13,0.6)] lg:-my-4">
             <p className="eyebrow text-oro">Comparsa · Filà · Falla · Cofradía</p>
             <p className="mt-6 font-display text-[clamp(3.5rem,7vw,5rem)] font-medium leading-none">199 €</p>
-            <p className="mt-2 text-paper/70">al año, para todos sus miembros</p>
-            <div className="mt-6 rounded-2xl bg-paper/[0.06] ring-1 ring-paper/15 p-5">
+            <p className="mt-2 text-ink/70">al año, para todos sus miembros</p>
+            <div className="mt-6 rounded-2xl bg-ink/[0.06] ring-1 ring-paper/15 p-5">
               <p className="text-[16px]">
                 <span className="font-display text-3xl text-oro">+25 €</span>
-                <span className="text-paper/80"> por cada escuadra o peña que se sume</span>
+                <span className="text-ink/80"> por cada escuadra o peña que se sume</span>
               </p>
-              <p className="mt-2 text-sm text-paper/55">En vez de 69 € cada una. Una sola factura.</p>
+              <p className="mt-2 text-sm text-ink/55">En vez de 69 € cada una. Una sola factura.</p>
             </div>
-            <p className="mt-6 text-paper/70 text-[16px] leading-relaxed flex-1">
+            <p className="mt-6 text-ink/70 text-[16px] leading-relaxed flex-1">
               Normas, actos, actas y avisos para toda la comparsa, y un Festeret propio para cada escuadra que ya sabe todo lo de arriba.
             </p>
             <button
               onClick={onOpenDemo}
-              className="mt-8 rounded-full bg-grana hover:bg-grana-2 py-4 font-semibold text-paper transition-colors cursor-pointer"
+              className="mt-8 rounded-full bg-grana hover:bg-grana-2 py-4 font-semibold text-ink transition-colors cursor-pointer"
             >
               Pide tu Festeret
             </button>
-            <p className="mt-3 text-center text-sm text-paper/50">Demo gratis con vuestros datos</p>
+            <p className="mt-3 text-center text-sm text-ink/50">Demo gratis con vuestros datos</p>
           </div>
 
           {/* Federación */}
