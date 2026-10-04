@@ -1,6 +1,33 @@
+import { useState } from 'react';
+
 export function Contact() {
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const fieldClass = "w-full rounded-xl border border-ink/15 bg-paper px-4 py-3.5 text-[15px] text-ink placeholder:text-ink/35 outline-none focus:border-grana focus:ring-2 focus:ring-grana/15 transition-all";
   
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('loading');
+    
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    try {
+      const res = await fetch('/contact', {
+        method: 'POST',
+        body: formData
+      });
+      
+      if (res.ok) {
+        setStatus('success');
+        form.reset();
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      setStatus('error');
+    }
+  };
+
   return (
     <section id="contacto" className="relative bg-paper-2 text-ink py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-2 gap-16 items-start">
@@ -26,26 +53,37 @@ export function Contact() {
 
         <div className="reveal">
           <form 
-            className="rounded-[2rem] bg-ink/5 ring-1 ring-ink/10 p-8 sm:p-10"
-            onSubmit={(e) => { e.preventDefault(); alert("Formulario de ejemplo. Para activar el envío, conéctalo a un servicio como Formspree."); }}
+            className="rounded-[2rem] bg-ink/5 ring-1 ring-ink/10 p-8 sm:p-10 relative"
+            onSubmit={handleSubmit}
           >
             <h3 className="font-display text-2xl font-medium mb-8">Envíanos un mensaje</h3>
             <div className="space-y-5">
               <div>
                 <label htmlFor="name" className="sr-only">Nombre</label>
-                <input id="name" required type="text" placeholder="Tu nombre" className={fieldClass} />
+                <input id="name" name="name" required type="text" placeholder="Tu nombre" className={fieldClass} disabled={status === 'loading'} />
               </div>
               <div>
                 <label htmlFor="email" className="sr-only">Email</label>
-                <input id="email" required type="email" placeholder="Correo electrónico" className={fieldClass} />
+                <input id="email" name="email" required type="email" placeholder="Correo electrónico" className={fieldClass} disabled={status === 'loading'} />
               </div>
               <div>
                 <label htmlFor="message" className="sr-only">Mensaje</label>
-                <textarea id="message" required rows={4} placeholder="¿En qué podemos ayudaros?" className={`${fieldClass} resize-none`} />
+                <textarea id="message" name="message" required rows={4} placeholder="¿En qué podemos ayudaros?" className={`${fieldClass} resize-none`} disabled={status === 'loading'} />
               </div>
-              <button type="submit" className="w-full rounded-full bg-ink text-paper hover:bg-ink/80 py-4 font-semibold transition-colors cursor-pointer mt-4">
-                Enviar mensaje
+              <button 
+                type="submit" 
+                disabled={status === 'loading'}
+                className="w-full rounded-full bg-ink text-paper hover:bg-ink/80 py-4 font-semibold transition-colors cursor-pointer mt-4 disabled:opacity-50"
+              >
+                {status === 'loading' ? 'Enviando...' : 'Enviar mensaje'}
               </button>
+              
+              {status === 'success' && (
+                <p className="text-green-600 text-sm mt-4 text-center">¡Mensaje enviado! Te contactaremos pronto.</p>
+              )}
+              {status === 'error' && (
+                <p className="text-grana text-sm mt-4 text-center">Hubo un error al enviar el mensaje. Inténtalo de nuevo más tarde.</p>
+              )}
             </div>
           </form>
         </div>
