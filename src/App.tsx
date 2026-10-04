@@ -11,6 +11,8 @@ import { Capabilities } from './components/Capabilities';
 import { Manifesto } from './components/Manifesto';
 import { Pricing } from './components/Pricing';
 import { Faq } from './components/Faq';
+import { Contact } from "./components/Contact";
+
 import { FinalCta } from './components/FinalCta';
 import { Footer } from './components/Footer';
 import { DemoModal } from './components/DemoModal';
@@ -34,6 +36,7 @@ export function App() {
         <Network />
         <Pricing onOpenDemo={open} />
         <Faq />
+        <Contact />
         <FinalCta onOpenDemo={open} />
       </main>
       <Footer />

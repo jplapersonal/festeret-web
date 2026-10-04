@@ -34,7 +34,7 @@ export function Phone({ messages, typing, footer, className = '', title = 'El Fe
 
   return (
     <div
-      className={`relative w-[310px] sm:w-[340px] rounded-[2.75rem] bg-ink p-[10px] shadow-[0_0_80px_-20px_rgba(244,63,94,0.3),0_0_0_1px_rgba(255,255,255,0.06)_inset] ${className}`}
+      className={`relative w-full max-w-[310px] sm:max-w-[340px] rounded-[2.75rem] bg-ink p-[10px] shadow-[0_0_80px_-20px_rgba(244,63,94,0.3),0_0_0_1px_rgba(255,255,255,0.06)_inset] ${className}`}
     >
       <div className="relative overflow-hidden rounded-[2.2rem] bg-paper flex flex-col h-[600px]">
         {/* status bar */}
