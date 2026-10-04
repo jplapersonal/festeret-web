@@ -85,10 +85,13 @@ function Diagram() {
         <circle cx={CX - 40} cy={CY + 128} r="3" fill="#e0566b" />
       </g>
       <circle cx={CX} cy={CY} r="110" fill="#16110d" stroke="#d4a23a" strokeOpacity="0.5" strokeWidth="1.5" />
-      <g transform={`translate(${CX - 62} ${CY - 62})`}>
-        <Owl size={124} />
+      <g transform={`translate(${CX - 75} ${CY - 75})`}>
+        <Owl size={150} />
       </g>
-      <text x={CX} y={CY + 70} textAnchor="middle" className="fill-ink font-display" fontSize="22" fontWeight="600">
+      
+      {/* Chip El Festeret */}
+      <rect x={CX - 65} y={CY + 120} width="130" height="32" rx="16" fill="#16110d" stroke="#d4a23a" strokeWidth="1.5" strokeOpacity="0.8" />
+      <text x={CX} y={CY + 141} textAnchor="middle" className="fill-oro font-display font-medium" fontSize="16" letterSpacing="1">
         El Festeret
       </text>
 
@@ -189,9 +192,11 @@ export function Agent() {
             <span className="ping-ring absolute inset-0 rounded-full border border-oro/50" />
             <span className="ping-ring absolute inset-0 rounded-full border border-grana-2/60" style={{ animationDelay: '-1.8s' }} />
             <span className="absolute inset-4 rounded-full bg-grana/25 blur-xl" />
-            <Owl size={104} className="relative" />
+            <Owl size={130} className="relative" />
           </div>
-          <p className="text-center font-display text-xl mt-2">El Festeret</p>
+          <div className="mx-auto mt-6 w-fit rounded-full bg-[#16110d] border border-oro/80 px-6 py-1.5 shadow-sm">
+            <p className="text-center font-display text-[15px] font-medium text-oro tracking-wide">El Festeret</p>
+          </div>
           <VLine />
           <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-ink/45 mb-4">Lo que hace</p>
           <Chips items={ACTIONS} tone="act" />
