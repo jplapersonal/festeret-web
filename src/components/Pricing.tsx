@@ -4,7 +4,7 @@ interface PricingProps {
 
 const INCLUDED = [
   'Consultas ilimitadas por Telegram (100% gratis)',
-  'Integración con WhatsApp Oficial (suplemento de Meta)',
+  'Integración con WhatsApp Oficial (coste adicional por mensaje según tarifas de Meta)',
   'Vuestro nombre, escudo e idioma (multidioma)',
   'Todas vuestras actas y documentos',
   'Comidas, cenas, alergias y cuotas',
@@ -87,11 +87,14 @@ export function Pricing({ onOpenDemo }: PricingProps) {
         </div>
 
         <div className="reveal mt-12 rounded-[2rem] ring-1 ring-ink/10 bg-paper-2/60 p-8 sm:p-10">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <p className="eyebrow text-ink/60">Todo incluido en cualquier plan</p>
-            <p className="text-sm text-ink/50">IVA no incluido · ¿Ya pagabais como escuadra? Os lo descontamos al entrar la comparsa.</p>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <p className="eyebrow text-ink/60 shrink-0">Todo incluido en cualquier plan</p>
+            <p className="text-sm text-ink/50 md:text-right">
+              <strong className="font-medium text-ink/65">Nota sobre WhatsApp:</strong> Telegram es 100% gratuito e ilimitado. Si decidís conectar WhatsApp Oficial, Meta (Facebook) cobra un pequeño coste por cada mensaje enviado/recibido que se facturará aparte.<br/>
+              <span className="opacity-75 mt-1 block">IVA no incluido · ¿Ya pagabais como escuadra? Os lo descontamos al entrar la comparsa.</span>
+            </p>
           </div>
-          <ul className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4 text-[16px]">
+          <ul className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4 text-[16px]">
             {INCLUDED.map((i) => (
               <li key={i} className="flex gap-3">
                 <span className="text-grana">✦</span>
