@@ -1,3 +1,5 @@
+import bgData from "../assets/howitworks-bg.jpg";
+
 import festeroImg from '../assets/festero-phone-tech.jpg';
 
 const STEPS = [
@@ -21,6 +23,7 @@ const STEPS = [
 export function HowItWorks() {
   return (
     <section id="como-funciona" className="relative bg-paper-2 text-ink py-28 sm:py-36 overflow-hidden">
+      <img src={bgData} alt="" className="absolute inset-0 w-full h-full object-cover opacity-15 mix-blend-screen" />
       <div className="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-12 gap-16 items-center">
         <div className="lg:col-span-5 reveal">
           <div className="relative">
