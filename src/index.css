@@ -8,18 +8,18 @@
    satin  – guiño al satén turquesa de la xilaba
 */
 @theme {
-  --color-paper: #f3ebdd;
-  --color-paper-2: #ebe0cd;
-  --color-ink: #16110d;
-  --color-ink-2: #241c16;
-  --color-grana: #a3172b;
-  --color-grana-2: #7f0f20;
-  --color-oro: #d4a23a;
-  --color-satin: #1f6f78;
+  --color-paper: #09090b;
+  --color-paper-2: #18181b;
+  --color-ink: #f8fafc;
+  --color-ink-2: #e2e8f0;
+  --color-grana: #f43f5e;
+  --color-grana-2: #e11d48;
+  --color-oro: #fbbf24;
+  --color-satin: #22d3ee;
   --color-wa: #075e54;
-  --color-wa-bubble: #dcf8c6;
+  --color-wa-bubble: #005c4b;
 
-  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
   --font-sans: "Geist", system-ui, -apple-system, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, monospace;
 }
@@ -47,8 +47,7 @@
 .font-display {
   font-family: var(--font-display);
   font-optical-sizing: auto;
-  font-variation-settings: "wdth" 92;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.04em;
 }
 .font-display em {
   font-style: normal;
@@ -160,7 +159,7 @@
 
 /* WhatsApp wallpaper pattern */
 .wa-wallpaper {
-  background-color: #efe7dc;
-  background-image: radial-gradient(rgba(22, 17, 13, 0.06) 1px, transparent 1px);
+  background-color: #0b141a;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 14px 14px;
 }

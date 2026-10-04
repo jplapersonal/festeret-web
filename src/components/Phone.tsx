@@ -34,7 +34,7 @@ export function Phone({ messages, typing, footer, className = '', title = 'El Fe
 
   return (
     <div
-      className={`relative w-[310px] sm:w-[340px] rounded-[2.75rem] bg-ink p-[10px] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.65),0_0_0_1px_rgba(255,255,255,0.06)_inset] ${className}`}
+      className={`relative w-[310px] sm:w-[340px] rounded-[2.75rem] bg-ink p-[10px] shadow-[0_0_80px_-20px_rgba(244,63,94,0.3),0_0_0_1px_rgba(255,255,255,0.06)_inset] ${className}`}
     >
       <div className="relative overflow-hidden rounded-[2.2rem] bg-paper flex flex-col h-[600px]">
         {/* status bar */}
@@ -56,14 +56,14 @@ export function Phone({ messages, typing, footer, className = '', title = 'El Fe
 
         {/* chat */}
         <div ref={bodyRef} className="wa-wallpaper flex-1 overflow-y-auto px-3 py-4 space-y-2 text-[13.5px] leading-snug">
-          <div className="mx-auto w-fit rounded-md bg-white/80 px-2.5 py-1 text-[10.5px] font-medium text-ink/60 shadow-sm">
+          <div className="mx-auto w-fit rounded-md bg-ink/10 backdrop-blur-md px-2.5 py-1 text-[10.5px] font-medium text-ink/60 shadow-sm">
             HOY
           </div>
           {messages.map((m) => (
             <div key={m.id} className={`bubble-in flex ${m.from === 'user' ? 'justify-end' : 'justify-start'}`}>
               <div
                 className={`relative max-w-[82%] rounded-xl px-3 pt-1.5 pb-4 shadow-[0_1px_0.5px_rgba(0,0,0,0.13)] text-ink ${
-                  m.from === 'user' ? 'bg-wa-bubble rounded-tr-sm' : 'bg-white rounded-tl-sm'
+                  m.from === 'user' ? 'bg-wa-bubble rounded-tr-sm' : 'bg-ink/10 rounded-tl-sm'
                 }`}
               >
                 <p className="whitespace-pre-line">{rich(m.text)}</p>
@@ -76,7 +76,7 @@ export function Phone({ messages, typing, footer, className = '', title = 'El Fe
           ))}
           {typing && (
             <div className="bubble-in flex justify-start">
-              <div className="rounded-xl rounded-tl-sm bg-white px-3.5 py-3 shadow-sm flex gap-1">
+              <div className="rounded-xl rounded-tl-sm bg-ink/10 px-3.5 py-3 shadow-sm flex gap-1">
                 <span className="typing-dot h-1.5 w-1.5 rounded-full bg-ink/50" />
                 <span className="typing-dot h-1.5 w-1.5 rounded-full bg-ink/50" />
                 <span className="typing-dot h-1.5 w-1.5 rounded-full bg-ink/50" />
@@ -88,7 +88,7 @@ export function Phone({ messages, typing, footer, className = '', title = 'El Fe
         {/* input */}
         {footer ?? (
           <div className="bg-paper-2 px-2.5 py-2 flex items-center gap-2 shrink-0">
-            <div className="flex-1 rounded-full bg-white px-4 py-2 text-[13px] text-ink/40">Mensaje</div>
+            <div className="flex-1 rounded-full bg-ink/10 px-4 py-2 text-[13px] text-ink/40">Mensaje</div>
             <div className="h-9 w-9 rounded-full bg-wa grid place-items-center text-white text-sm">🎤</div>
           </div>
         )}

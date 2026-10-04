@@ -113,7 +113,7 @@ export function Simulator() {
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Escribe un mensaje"
                   aria-label="Escribe un mensaje al Festeret"
-                  className="flex-1 rounded-full bg-white px-4 py-2 text-[13px] text-ink placeholder:text-ink/40 outline-none focus:ring-2 focus:ring-wa/40"
+                  className="flex-1 rounded-full bg-ink/10 px-4 py-2 text-[13px] text-ink placeholder:text-ink/40 outline-none focus:ring-2 focus:ring-wa/40"
                 />
                 <button
                   type="submit"

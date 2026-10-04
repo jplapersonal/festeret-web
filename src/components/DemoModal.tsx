@@ -7,7 +7,7 @@ interface DemoModalProps {
 }
 
 const field =
-  'w-full rounded-xl border border-ink/15 bg-white px-4 py-3.5 text-[15px] text-ink placeholder:text-ink/35 outline-none focus:border-grana focus:ring-2 focus:ring-grana/15';
+  'w-full rounded-xl border border-ink/15 bg-ink/10 px-4 py-3.5 text-[15px] text-ink placeholder:text-ink/35 outline-none focus:border-grana focus:ring-2 focus:ring-grana/15';
 
 export function DemoModal({ isOpen, onClose }: DemoModalProps) {
   const ref = useRef<HTMLDialogElement>(null);
