@@ -18,7 +18,7 @@ const INK = '#09090b';
 /**
  * El Festeret — the wise owl. Hand-built geometry on a 100×100 grid.
  */
-export function Owl({ size = 40, variant = 'avatar', color, className = '', title = 'El Festeret', hat = 'none' }: OwlProps) {
+export function Owl({ size = 40, variant = 'avatar', color, className = '', title = 'El Festeret', hat = 'fez' }: OwlProps) {
   const line = variant === 'avatar' ? CREAM : color ?? INK;
   const hole = variant === 'avatar' ? GRANA : 'transparent';
   const eyeWhite = variant === 'avatar' ? CREAM : color ?? INK;
@@ -27,7 +27,7 @@ export function Owl({ size = 40, variant = 'avatar', color, className = '', titl
   return (
     <svg width={size} height={size} viewBox="0 0 100 100" className={className} role="img" aria-label={title}>
       {variant === 'avatar' && <circle cx="50" cy="50" r="50" fill={GRANA} />}
-      <g strokeLinejoin="round" strokeLinecap="round">
+      <g strokeLinejoin="round" strokeLinecap="round" style={{ transformOrigin: 'center', transform: 'scale(1.18)' }}>
         {/* HATS - placed behind ear tufts for a better 3D look or above head */}
         {hat === 'fez' && (
           <g>

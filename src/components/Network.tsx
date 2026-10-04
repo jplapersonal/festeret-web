@@ -78,10 +78,13 @@ export function Network() {
 
             <circle cx={C} cy={C} r="78" fill="#09090b" />
             <circle cx={C} cy={C} r="78" fill="none" stroke="#f59e0b" strokeOpacity="0.6" strokeWidth="2" />
-            <g transform={`translate(${C - 34} ${C - 34})`}>
-              <Owl size={68} />
+            <g transform={`translate(${C - 45} ${C - 45})`}>
+              <Owl size={90} />
             </g>
-            <text x={C} y={C + 46} textAnchor="middle" className="fill-oro font-mono" fontSize="12" letterSpacing="2">
+            
+            {/* Chip COMPARSA */}
+            <rect x={C - 52} y={C + 86} width="104" height="26" rx="13" fill="#09090b" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.8" />
+            <text x={C} y={C + 103} textAnchor="middle" className="fill-oro font-mono font-bold" fontSize="11" letterSpacing="2">
               COMPARSA
             </text>
           </svg>
