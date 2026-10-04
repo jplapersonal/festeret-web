@@ -29,7 +29,7 @@ export function Problem() {
         </div>
 
         <div className="lg:col-span-6 reveal">
-          <div className="relative mx-auto max-w-md rounded-3xl bg-white/70 p-5 sm:p-6 shadow-[0_30px_60px_-30px_rgba(22,17,13,0.35)] ring-1 ring-ink/5">
+          <div className="relative mx-auto max-w-md rounded-3xl bg-ink/10 p-5 sm:p-6 shadow-[0_30px_60px_-30px_rgba(22,17,13,0.35)] ring-1 ring-ink/5">
             <div className="flex items-center justify-between border-b border-ink/10 pb-4">
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 rounded-full bg-ink/90 grid place-items-center text-paper font-display">C</div>
@@ -43,7 +43,7 @@ export function Problem() {
 
             <div className="space-y-3 pt-5">
               {NOISE.map((n, i) => (
-                <div key={i} className={`w-fit max-w-[88%] ${i % 2 ? 'ml-auto' : ''} rounded-2xl bg-white px-4 py-2.5 shadow-sm ring-1 ring-ink/5`}>
+                <div key={i} className={`w-fit max-w-[88%] ${i % 2 ? 'ml-auto' : ''} rounded-2xl bg-ink/10 px-4 py-2.5 shadow-sm ring-1 ring-ink/5`}>
                   <p className={`text-xs font-semibold ${n.color}`}>{n.who}</p>
                   <p className="text-[15px] text-ink">{n.text}</p>
                   <p className="text-right text-[10px] text-ink/40">{n.time}</p>

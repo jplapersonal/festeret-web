@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Phone, type ChatMsg } from './Phone';
 import { AgentTrace, type TraceStep } from './AgentTrace';
-import paradeImg from '../assets/parade-hero.jpg';
+import paradeImg from '../assets/hero-tech.jpg';
 
 type ScriptMsg = Omit<ChatMsg, 'id'> & { trace?: TraceStep[] };
 

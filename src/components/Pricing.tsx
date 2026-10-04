@@ -29,7 +29,7 @@ export function Pricing({ onOpenDemo }: PricingProps) {
 
         <div className="mt-16 grid lg:grid-cols-3 gap-5 items-stretch">
           {/* Grupo */}
-          <div className="reveal rounded-[2rem] bg-white ring-1 ring-ink/10 p-8 sm:p-10 flex flex-col">
+          <div className="reveal rounded-[2rem] bg-ink/5 ring-1 ring-ink/10 p-8 sm:p-10 flex flex-col">
             <p className="eyebrow text-grana">Escuadra · Peña · Colla</p>
             <p className="mt-6 font-display text-[clamp(3.5rem,7vw,5rem)] font-medium leading-none text-ink">69 €</p>
             <p className="mt-2 text-ink/60">al año</p>
@@ -69,7 +69,7 @@ export function Pricing({ onOpenDemo }: PricingProps) {
           </div>
 
           {/* Federación */}
-          <div className="reveal rounded-[2rem] bg-white ring-1 ring-ink/10 p-8 sm:p-10 flex flex-col">
+          <div className="reveal rounded-[2rem] bg-ink/5 ring-1 ring-ink/10 p-8 sm:p-10 flex flex-col">
             <p className="eyebrow text-grana">Juntas · Societats · Federaciones</p>
             <h3 className="font-display mt-6 text-4xl font-medium text-ink leading-tight">Toda la fiesta, en un solo Festeret.</h3>
             <p className="mt-4 text-ink/65 text-[16px] leading-relaxed flex-1">

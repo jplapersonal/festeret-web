@@ -40,7 +40,7 @@ export function Capabilities() {
           </article>
 
           {/* Cuotas */}
-          <article className="reveal md:col-span-2 rounded-[2rem] bg-white p-7 ring-1 ring-ink/10 flex flex-col justify-between">
+          <article className="reveal md:col-span-2 rounded-[2rem] bg-ink/5 p-7 ring-1 ring-ink/10 flex flex-col justify-between">
             <div>
               <h3 className="font-display text-2xl font-medium text-ink">Cuotas</h3>
               <p className="mt-2 text-ink/65 text-[15px]">Cada festero consulta lo suyo. Nadie ve lo de nadie.</p>
