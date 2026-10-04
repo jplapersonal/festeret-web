@@ -14,7 +14,7 @@ export function Capabilities() {
 
         <div className="mt-16 grid grid-cols-1 md:grid-cols-6 gap-5 auto-rows-[minmax(260px,auto)]">
           {/* Dinars */}
-          <article className="reveal group relative md:col-span-4 md:row-span-2 overflow-hidden rounded-[2rem] bg-ink text-paper min-h-[460px]">
+          <article className="reveal group relative md:col-span-4 md:row-span-2 overflow-hidden rounded-[2rem] bg-ink/5 text-ink min-h-[460px]">
             <img src={dinnerImg} alt="Cena de comparsa con brindis" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.5s] group-hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
             <div className="relative h-full flex flex-col justify-end p-8 sm:p-10">
@@ -22,7 +22,7 @@ export function Capabilities() {
               <h3 className="font-display mt-3 text-3xl sm:text-5xl font-medium leading-[1.02] max-w-xl">
                 “Apúntame con menú celíaco.” <em className="text-oro">Y listo.</em>
               </h3>
-              <p className="mt-4 max-w-lg text-paper/75 text-base sm:text-lg">
+              <p className="mt-4 max-w-lg text-ink/75 text-base sm:text-lg">
                 Confirma asistencia, cuenta celíacos, menús infantiles y acompañantes, y te deja la lista preparada para el
                 restaurante.
               </p>
@@ -60,22 +60,22 @@ export function Capabilities() {
           </article>
 
           {/* Avisos */}
-          <article className="reveal md:col-span-3 rounded-[2rem] bg-grana text-paper p-8 sm:p-10 flex flex-col justify-between">
+          <article className="reveal md:col-span-3 rounded-[2rem] bg-grana text-ink p-8 sm:p-10 flex flex-col justify-between">
             <p className="eyebrow text-oro">Avisos</p>
             <div>
               <h3 className="font-display text-3xl sm:text-4xl font-medium leading-tight">La directiva avisa una vez. Llega a todos.</h3>
-              <p className="mt-3 text-paper/80 text-base">Y las dudas que provoca el aviso las resuelve él, no tu teléfono.</p>
+              <p className="mt-3 text-ink/80 text-base">Y las dudas que provoca el aviso las resuelve él, no tu teléfono.</p>
             </div>
           </article>
 
           {/* Actas */}
-          <article className="reveal md:col-span-3 rounded-[2rem] bg-ink text-paper p-8 sm:p-10 flex flex-col justify-between">
+          <article className="reveal md:col-span-3 rounded-[2rem] bg-ink/5 text-ink p-8 sm:p-10 flex flex-col justify-between">
             <p className="eyebrow text-oro">Memoria de la comparsa</p>
             <div>
               <h3 className="font-display text-3xl sm:text-4xl font-medium leading-tight">Se lee las actas para que tú no tengas que hacerlo.</h3>
               <div className="mt-5 flex flex-wrap gap-2 text-xs">
                 {['Acta 26-09-2025.pdf', 'Estatutos.pdf', 'Programa de Fiestas.pdf', 'Menú dinar.pdf'].map((f) => (
-                  <span key={f} className="rounded-full border border-paper/20 px-3 py-1.5 text-paper/75">
+                  <span key={f} className="rounded-full border border-paper/20 px-3 py-1.5 text-ink/75">
                     📄 {f}
                   </span>
                 ))}

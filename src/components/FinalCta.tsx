@@ -2,7 +2,7 @@ import fireworksImg from '../assets/fireworks-castle.jpg';
 
 export function FinalCta({ onOpenDemo }: { onOpenDemo: () => void }) {
   return (
-    <section className="relative overflow-hidden bg-ink text-paper">
+    <section className="relative overflow-hidden bg-paper text-ink">
       <img src={fireworksImg} alt="Castillo de fuegos artificiales sobre la fortaleza" loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/60 to-ink/95" />
       <div className="relative mx-auto max-w-5xl px-5 sm:px-8 py-36 sm:py-48 text-center [text-shadow:0_2px_24px_rgba(0,0,0,0.6)]">

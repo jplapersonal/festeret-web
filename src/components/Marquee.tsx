@@ -24,7 +24,7 @@ export function Marquee() {
           ))}
         </div>
       </div>
-      <div className="relative overflow-hidden bg-ink py-3 text-paper/70 border-b border-paper/10" aria-hidden="true">
+      <div className="relative overflow-hidden bg-paper-2 py-3 text-ink/70 border-b border-ink/10" aria-hidden="true">
         <div className="marquee-track reverse flex w-max gap-12 whitespace-nowrap font-mono text-[12px] sm:text-[13px]">
           {log.map((t, i) => (
             <span key={i} className="flex items-center gap-3">

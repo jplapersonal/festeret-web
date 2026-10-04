@@ -14,7 +14,7 @@ export function AgentTrace({ steps, done, className = '' }: AgentTraceProps) {
   const finished = steps.length > 0 && done >= steps.length;
   return (
     <div
-      className={`rounded-2xl bg-ink/85 backdrop-blur-md ring-1 ring-paper/15 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.8)] text-paper overflow-hidden ${className}`}
+      className={`rounded-2xl bg-paper-2/85 backdrop-blur-md ring-1 ring-ink/15 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.8)] text-ink overflow-hidden ${className}`}
       aria-hidden="true"
     >
       <div className="flex items-center gap-2.5 px-4 py-3 border-b border-paper/10">
