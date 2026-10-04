@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { Logo } from './Navbar';
 // import { LegalModal } from './LegalModal';
 
