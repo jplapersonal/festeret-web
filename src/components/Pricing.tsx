@@ -3,11 +3,12 @@ interface PricingProps {
 }
 
 const INCLUDED = [
-  'Consultas ilimitadas por WhatsApp o Telegram',
+  'Consultas ilimitadas por Telegram (100% gratis)',
+  'Integración con WhatsApp Oficial (suplemento de Meta)',
   'Vuestro nombre, escudo e idioma (multidioma)',
   'Todas vuestras actas y documentos',
   'Comidas, cenas, alergias y cuotas',
-  'Avisos a todos por Canal de WhatsApp',
+  'Avisos a todos y felicitaciones automáticas',
   'Puesta en marcha en 24 h, sin cuota de alta',
 ];
 
@@ -35,7 +36,7 @@ export function Pricing({ onOpenDemo }: PricingProps) {
             <p className="mt-6 font-display text-[clamp(3.5rem,7vw,5rem)] font-medium leading-none text-ink">69 €</p>
             <p className="mt-2 text-ink/60">al año</p>
             <p className="mt-6 text-ink/70 text-[16px] leading-relaxed flex-1">
-              Vuestro grupo, por su cuenta: cuotas, turnos, cenas y documentos de la escuadra, en vuestro WhatsApp.
+              Vuestro grupo, por su cuenta: cuotas, turnos, cenas y documentos de la escuadra, en vuestro Telegram o WhatsApp.
             </p>
             <button
               onClick={onOpenDemo}
