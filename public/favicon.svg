@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
   <circle cx="50" cy="50" r="50" fill="#f43f5e" />
-  <g stroke-linejoin="round" stroke-linecap="round" transform="translate(-10, -10) scale(1.2)">
+  <g stroke-linejoin="round" stroke-linecap="round" transform="translate(-5, -1) scale(1.1)">
     <g>
       <path d="M38 23 L42 6 L58 6 L62 23 Z" fill="#f43f5e" stroke="#f8fafc" stroke-width="3" />
       <path d="M50 6 C52 2, 60 2, 66 12" fill="none" stroke="#f59e0b" stroke-width="2.5" />

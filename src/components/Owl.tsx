@@ -27,7 +27,7 @@ export function Owl({ size = 40, variant = 'avatar', color, className = '', titl
   return (
     <svg width={size} height={size} viewBox="0 0 100 100" className={className} role="img" aria-label={title}>
       {variant === 'avatar' && <circle cx="50" cy="50" r="50" fill={GRANA} />}
-      <g strokeLinejoin="round" strokeLinecap="round" style={{ transformOrigin: 'center', transform: 'scale(1.18)' }}>
+      <g strokeLinejoin="round" strokeLinecap="round" transform="translate(-5, -1) scale(1.1)">
         {/* HATS - placed behind ear tufts for a better 3D look or above head */}
         {hat === 'fez' && (
           <g>
