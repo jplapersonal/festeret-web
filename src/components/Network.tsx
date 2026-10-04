@@ -42,14 +42,14 @@ export function Network() {
               const y = C + Math.sin(a) * R;
               return (
                 <g key={i} fill="none" strokeLinecap="round">
-                  <line x1={C} y1={C} x2={x} y2={y} stroke="#16110d" strokeOpacity="0.12" strokeWidth="1.5" />
-                  <path d={`M${C} ${C} L${x} ${y}`} pathLength={100} className="flow" stroke="#a3172b" strokeWidth="3" style={{ animationDuration: '3.6s' }} />
+                  <line x1={C} y1={C} x2={x} y2={y} stroke="#09090b" strokeOpacity="0.12" strokeWidth="1.5" />
+                  <path d={`M${C} ${C} L${x} ${y}`} pathLength={100} className="flow" stroke="#f43f5e" strokeWidth="3" style={{ animationDuration: '3.6s' }} />
                 </g>
               );
             })}
 
-            <circle cx={C} cy={C} r={R} fill="none" stroke="#16110d" strokeOpacity="0.1" strokeDasharray="3 8" />
-            <circle cx={C} cy={C} r={R} className="ping-ring" fill="none" stroke="#a3172b" strokeOpacity="0.5" strokeWidth="2" />
+            <circle cx={C} cy={C} r={R} fill="none" stroke="#09090b" strokeOpacity="0.1" strokeDasharray="3 8" />
+            <circle cx={C} cy={C} r={R} className="ping-ring" fill="none" stroke="#f43f5e" strokeOpacity="0.5" strokeWidth="2" />
 
             {SQUADS.map((name, i) => {
               const a = (i / SQUADS.length) * Math.PI * 2 - Math.PI / 2;
@@ -58,7 +58,7 @@ export function Network() {
               const below = Math.sin(a) > -0.2;
               return (
                 <g key={name}>
-                  <circle cx={x} cy={y} r="27" fill="#f3ebdd" stroke="#a3172b" strokeOpacity="0.35" />
+                  <circle cx={x} cy={y} r="27" fill="#f8fafc" stroke="#f43f5e" strokeOpacity="0.35" />
                   <g transform={`translate(${x - 21} ${y - 21})`}>
                     <Owl size={42} />
                   </g>
@@ -76,9 +76,9 @@ export function Network() {
               );
             })}
 
-            <circle cx={C} cy={C} r="78" fill="#16110d" />
-            <circle cx={C} cy={C} r="78" fill="none" stroke="#d4a23a" strokeOpacity="0.6" strokeWidth="2" />
-            <g transform={`translate(${C - 34} ${C - 60})`}>
+            <circle cx={C} cy={C} r="78" fill="#09090b" />
+            <circle cx={C} cy={C} r="78" fill="none" stroke="#f59e0b" strokeOpacity="0.6" strokeWidth="2" />
+            <g transform={`translate(${C - 34} ${C - 34})`}>
               <Owl size={68} />
             </g>
             <text x={C} y={C + 46} textAnchor="middle" className="fill-oro font-mono" fontSize="12" letterSpacing="2">

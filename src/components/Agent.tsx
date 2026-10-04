@@ -85,7 +85,7 @@ function Diagram() {
         <circle cx={CX - 40} cy={CY + 128} r="3" fill="#e0566b" />
       </g>
       <circle cx={CX} cy={CY} r="110" fill="#16110d" stroke="#d4a23a" strokeOpacity="0.5" strokeWidth="1.5" />
-      <g transform={`translate(${CX - 62} ${CY - 78})`}>
+      <g transform={`translate(${CX - 62} ${CY - 62})`}>
         <Owl size={124} />
       </g>
       <text x={CX} y={CY + 70} textAnchor="middle" className="fill-ink font-display" fontSize="22" fontWeight="600">

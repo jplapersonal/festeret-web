@@ -13,7 +13,8 @@ const INCLUDED = [
 
 export function Pricing({ onOpenDemo }: PricingProps) {
   return (
-    <section id="precios" className="grain relative bg-paper py-28 sm:py-36">
+    <section id="precios" className="grain relative bg-paper py-28 sm:py-36 overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-grana/10 blur-[120px] rounded-full pointer-events-none" />
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <div className="max-w-3xl reveal">
           <p className="eyebrow text-grana">Precio</p>

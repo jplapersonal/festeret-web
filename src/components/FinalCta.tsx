@@ -11,12 +11,12 @@ export function FinalCta({ onOpenDemo }: { onOpenDemo: () => void }) {
           <br />
           <em className="text-oro">también disfrute la fiesta.</em>
         </h2>
-        <p className="mt-8 mx-auto max-w-xl text-lg sm:text-xl text-paper/80 reveal">
+        <p className="mt-8 mx-auto max-w-xl text-lg sm:text-xl text-ink/80 reveal">
           Te preparamos una demo con los datos de tu comparsa. Gratis y sin compromiso.
         </p>
         <button
           onClick={onOpenDemo}
-          className="reveal mt-12 rounded-full bg-grana hover:bg-grana-2 px-10 py-5 text-lg font-semibold text-paper shadow-[0_10px_40px_-10px_rgba(163,23,43,0.9)] transition-all hover:-translate-y-0.5 cursor-pointer"
+          className="reveal mt-12 rounded-full bg-grana hover:bg-grana-2 px-10 py-5 text-lg font-semibold text-ink shadow-[0_10px_40px_-10px_rgba(163,23,43,0.9)] transition-all hover:-translate-y-0.5 cursor-pointer"
         >
           Pide tu Festeret
         </button>
