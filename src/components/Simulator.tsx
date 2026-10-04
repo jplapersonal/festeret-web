@@ -64,7 +64,7 @@ export function Simulator() {
 
   return (
     <section id="pruebalo" className="grain relative bg-paper-2 py-28 sm:py-36 overflow-hidden">
-      <img src={bgBubbles} alt="" className="absolute inset-0 w-full h-full object-cover opacity-15 mix-blend-screen" />
+      <img src={bgBubbles} alt="" className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-screen" />
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-12 gap-16 items-center">
         <div className="lg:col-span-6 reveal">
           <p className="eyebrow text-grana">Pruébalo</p>
